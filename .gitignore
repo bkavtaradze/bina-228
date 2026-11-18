@@ -1,0 +1,6 @@
+.DS_Store
+assets/
+blender/*.blend
+blender/*.blend1
+app/node_modules
+app/dist

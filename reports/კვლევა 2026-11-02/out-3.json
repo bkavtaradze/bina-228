@@ -1,0 +1,471 @@
+[
+ {
+  "id": "cu-kitchen",
+  "designer": "ქვედა კარადები კრემისფერ-თეთრი მქრქალი შეღებილი, უსახელურო; ზედა ორი რიგი ჭერამდე მუხის შპონით; მაცივრის სვეტი კრემისფერი.",
+  "keep": [],
+  "drop": [
+   "Futurium — მზა მოდელი „Luciano“, სწორი, 8 მოდული",
+   "Genabuild — შეღებილი MDF-ის სამზარეულო",
+   "Home is. — მომხმარებლის სახელმძღვანელო",
+   "Litten Tree — სამზარეულო იტალიური საღებავით შეღებილი MDF-ით („სამზარეულო 3“)",
+   "Home is. — 2022 წლის გაშლილი მაგალითი"
+  ],
+  "options": [
+   {
+    "tier": "eco",
+    "shop": "Home is.",
+    "url": "https://www.homeis.ge/laminati-mdf-shegebili-mdf-shponirebuli-mdf/",
+    "img": "",
+    "name": "შეღებილი MDF ქვედა კარადებსა და სვეტზე (4.26 მ² × 850) + შპონირებული MDF ზედა ორ რიგზე (3.44 მ² × 870)",
+    "dims": "ფასადი 7.70 მ²: ქვედა 2.14 + სვეტი 2.12 + ზედა 3.44",
+    "color": "ქვედა — კრემისფერი მქრქალი შეღებილი; ზედა — მუხის შპონი",
+    "weak": "ფასები „დან“-ია; უსახელურო პროფილი და მექანიზმები ცალკე; შპონის სახეობა (მუხა) გვერდზე არ წერია",
+    "price": 6614,
+    "priceNote": "2026-11-01: 850 და 870 ₾/მ²-დან (სტატია 2025-02-25); ჯამი ჩემი გამოთვლაა, საბოლოო ფასს ხელოსანი ეტყვის",
+    "est": true,
+    "match": "close"
+   },
+   {
+    "tier": "mid",
+    "shop": "Litten Tree",
+    "url": "https://littentree.ge/ka/products?cat_id=4",
+    "img": "",
+    "name": "შეღებილი MDF (ქვედა + სვეტი, 4.26 მ² × 1100) + მუხის შპონი ზედა ორ რიგზე (3.44 მ², შპონის დანამატი 15% სავარაუდო)",
+    "dims": "ფასადი 7.70 მ²",
+    "color": "ქვედა — მქრქალი შეღებილი; ზედა — მუხის შპონი",
+    "weak": "გვერდზე შპონის ფასი არ წერია — 15% დანამატი ჩემი შეფასებაა; 1100 ₾/მ² „სამზარეულო 3“-ის ფასია (ტექსტი ნაწილობრივ ამოჭრილია)",
+    "price": 9038,
+    "priceNote": "2026-11-01: ქვედა კარადების ფასი ძველი მიდგომით (7.70×1100=8470), ზედა ნაწილზე შპონის დანამატი გამოთვლილია",
+    "est": true,
+    "match": "close"
+   },
+   {
+    "tier": "top",
+    "shop": "Home is. (ინდივიდუალური შეკვეთა)",
+    "url": "https://www.homeis.ge/aveji-individualuri-shekvethith/",
+    "img": "",
+    "name": "იგივე ავეჯი Blum-ის მექანიზმებით, უსახელურო პროფილით, შპონი ზედა რიგებზე",
+    "dims": "ფასადი 7.70 მ²",
+    "color": "როგორც დიზაინერის ნახაზზე",
+    "weak": "ფასი ექსტრაპოლაციაა 2022 წლის მაგალითიდან (980 ₾/მ² საშუალო + Blum უჯრები/ანჯამები + შპონი)",
+    "price": 9020,
+    "priceNote": "2022 წლის სტატიის მონაცემებიდან გამოთვლილი; დღევანდელი ფასი ხელოსანს ჰკითხეთ",
+    "est": true,
+    "match": "close"
+   }
+  ],
+  "notes": "ფასში ახლა ორივე მასალაა: ქვედა+სვეტი შეღებილი (4.26 მ²), ზედა ორი რიგი მუხის შპონი (3.44 მ²). შპონის ფასი არც ერთ საჯარო გვერდზე ზუსტად არ წერია — სამივე ფასი საორიენტაციოა, მოითხოვეთ გამოთვლა ორივე მასალაზე ცალ-ცალკე. ღია სურვილი: DW (ჭურჭლის სარეცხი) გადადებულია, ამიტომ შუა სამი უჯრა დარჩეს."
+ },
+ {
+  "id": "ki-worktop",
+  "designer": "ფართუკი და ზედაპირი — დიდი ღია კრემისფერი ფირფიტები რბილი, მკრთალი ძარღვებით, ვერტიკალური ნაკერებით; იგივე ფილა მარჯვენა კედელზე ჭერამდე.",
+  "keep": [],
+  "drop": [
+   "Art House — ლამინირებული ზედაპირი 38 × 600 × 3050 მმ",
+   "Zodi — კვარცი, 2 სმ (ფილა 305 × 152 ან 320 × 160 სმ)",
+   "AllStone — კვარცი 875 Linen"
+  ],
+  "options": [
+   {
+    "tier": "eco",
+    "shop": "Zodi",
+    "url": "https://zodi.ge/banner/პორსელანი/porcelain-vista-bone-mat-163323/",
+    "img": "",
+    "name": "Porcelain VISTA BONE MAT 160×320, სისქე 1.2 სმ — 390 ₾/მ² × 4.19 მ²",
+    "dims": "160×320 სმ ფირფიტა, 1.2 სმ",
+    "color": "ღია ძვლისფერი მქრქალი",
+    "weak": "ძარღვების სურათი გვერდზე არ ჩანს; 1.2 სმ თხელია — ზედაპირისთვის ნაპირზე 2 სმ-იანი ილუზია ცალკე უნდა გაკეთდეს",
+    "price": 1634.1,
+    "priceNote": "2026-11-01: 390 ₾/მ² (გვერდზე ერთეული „კვ.მ“); 4.19 მ² ჩემი გამოთვლაა, მაღაზიამ მთელი ფირფიტა შეიძლება დაგითვალოთ",
+    "est": false,
+    "match": "close"
+   },
+   {
+    "tier": "mid",
+    "shop": "AllStone",
+    "url": "https://allstone.ge/ka/product/detail/330/კვარცი-875-linen",
+    "img": "",
+    "name": "კვარცი 875 Linen — 400 ₾ × 4.19",
+    "dims": "მაღაზია ზომებს 60×160-მდე ასახელებს; სისქე არ წერია",
+    "color": "ღია სელისფერი",
+    "weak": "ძარღვების სურათი და ერთეული (მ² თუ ფირფიტა) გვერდზე არ წერია; ნიმუში შეადარეთ",
+    "price": 1676,
+    "priceNote": "2026-11-01: 400 ₾ — გვერდზე ერთეული არ წერია, ჩავთვალე მ²-ზე (ჩემი ვარაუდი)",
+    "est": true,
+    "match": "close"
+   },
+   {
+    "tier": "top",
+    "shop": "Zodi",
+    "url": "https://zodi.ge/banner/%e1%83%9e%e1%83%9d%e1%83%a0%e1%83%a1%e1%83%94%e1%83%9a%e1%83%90%e1%83%9c%e1%83%98/porcelain-travertine-fildisi-mat-163323/",
+    "img": "",
+    "name": "Porcelain TRAVERTINE FILDISI MAT 160×320 — 455 ₾ × 4.19",
+    "dims": "160×320 სმ ფირფიტა",
+    "color": "სპილოს ძვლისფერი ტრავერტინის ძარღვებით, მქრქალი",
+    "weak": "ერთეული გვერდზე არ ჩანს (ვივარაუდე მ²); სისქე არ წერია",
+    "price": 1906.45,
+    "priceNote": "2026-11-01: 455 — ერთეული უცნობია (ვარაუდი მ²)",
+    "est": true,
+    "match": "same"
+   }
+  ],
+  "notes": "ორივე კედლის ფილა და ზედაპირი ერთი მასალისაა, თუ ერთი ფირფიტა ორივეს ეყოფა — რაოდენობა გადათვალეთ ფირფიტებით (160×320 = 5.12 მ²). ფასი მხოლოდ მასალაა."
+ },
+ {
+  "id": "ki-sink",
+  "designer": "ერთი მართკუთხა ღრმა თეთრი/ღია ჯამი, ზედაპირის ქვეშ ჩასმული.",
+  "keep": [],
+  "drop": [
+   "merlons.ge — Ukinox Zeroline ZRL500.12K",
+   "kuppersberg.ge — Franke Maris MRG 110-52 (Sahara)",
+   "kuppersberg.ge — Franke MRX 110-50",
+   "merlons.ge — Schock Brooklyn N-100L „Everest“"
+  ],
+  "options": [
+   {
+    "tier": "eco",
+    "shop": "zaraba.ge",
+    "url": "https://zaraba.ge/en/product/p-05-white/",
+    "img": "https://zaraba.ge/wp-content/uploads/2022/12/P-05-BEYAZ1.jpg",
+    "name": "გრანიტის კომპოზიტის ნიჟარა P-05 White",
+    "dims": "41–51 სმ, სიღრმე 20 სმ",
+    "color": "თეთრი",
+    "weak": "გვერდზე არ წერია ქვეშ ჩასაყენებელია თუ არა — ყიდვამდე გადაამოწმეთ",
+    "price": 425,
+    "priceNote": "2026-11-01",
+    "est": false,
+    "match": "close"
+   },
+   {
+    "tier": "mid",
+    "shop": "merlons.ge",
+    "url": "https://merlons.ge/en/products/kitchen-sink-shock-lahti-n-100l-composite-quartz-crl-single-alpina-60cm",
+    "img": "https://merlons.ge/cdn/shop/files/LATN100L007DEUE61NN-catalogue.png",
+    "name": "Schock Lahti N-100L Alpina, კომპოზიტი კვარცი, ერთი ჯამი",
+    "dims": "სიგანე 60 სმ (სურათზე 50×40 — გვერდზე ურთიერთგამომრიცხავია)",
+    "color": "თეთრი (Alpina)",
+    "weak": "ზომა გადაამოწმეთ; ფასი მაღალია",
+    "price": 1120,
+    "priceNote": "2026-11-01: გვერდი წერს „ზემოდან და ქვემოდან ჩასაყენებელი“",
+    "est": false,
+    "match": "same"
+   },
+   {
+    "tier": "top",
+    "shop": "kuppersberg.ge",
+    "url": "https://kuppersberg.ge/franke-nizhara-kubus-2-kng-110-52-2/",
+    "img": "https://kuppersberg.ge/wp-content/uploads/2025/03/PP001_125.0507.834.jpg",
+    "name": "Franke Kubus 2 KNG 110-52, გრანიტი, ერთი ჯამი",
+    "dims": "გვერდზე ზომა არ წერია",
+    "color": "თეთრი",
+    "weak": "ჩასაყენების ტიპი გვერდზე არ წერია („110“ სერია ქვემოდან ჩასაკიდია — ვარაუდი)",
+    "price": 1317,
+    "priceNote": "2026-11-01: 1317 (იყო 1600, −18%)",
+    "est": false,
+    "match": "same"
+   }
+  ],
+  "notes": "Ukinox ფოლადი არ ემთხვევა: რენდერზე ჯამი თეთრია. ნიჟარის ზომა ქვედა 60 სმ-იან კარადაში (შიგნით ≈56 სმ) უნდა ეტეოდეს."
+ },
+ {
+  "id": "ki-tap",
+  "designer": "დავარცხნილი თითბრისფერი მაღალი წვრილი ონკანი, ზემოდან წინ „Г“-ებრ მოხრილი ცხვირით და გვერდზე წვრილი ბერკეტით.",
+  "keep": [],
+  "drop": [
+   "nova.ge — NV-111",
+   "merlons.ge — Empolo M72 2101BG",
+   "merlons.ge — Meir Round Piccola MK17-CH",
+   "nova.ge — Firmer YLN18588-5G",
+   "kuppersberg.ge — Franke Eos Neo Pull Down Side HP Gold"
+  ],
+  "options": [
+   {
+    "tier": "eco",
+    "shop": "merlons.ge",
+    "url": "https://merlons.ge/en/products/kitchen-mixer-empolo-rectangular-brushed-gold-color-m23-2101bg",
+    "img": "https://merlons.ge/cdn/shop/files/merlons-65a61cb95b1cd0710c78ef03f613596b5617231bf6e5330fc2c4b546b8d008ce.webp?v=1786821608&width=1",
+    "name": "Empolo „rectangular“ M23 2101BG, ბრაშირებული ოქრო",
+    "dims": "სიმაღლე გვერდზე არ წერია",
+    "color": "დავარცხნილი ოქროსფერი",
+    "weak": "ცხვირის ფორმა გვერდზე არ წერია — „rectangular“ სახელით კუთხოვანია; სურათზე შეადარეთ",
+    "price": 328,
+    "priceNote": "2026-11-01: 328 (იყო 410, −20%), მარაგშია",
+    "est": false,
+    "match": "close"
+   },
+   {
+    "tier": "mid",
+    "shop": "merlons.ge",
+    "url": "https://merlons.ge/en/products/kitchen-mixer-empolo-dava-single-lever-brushed-gold-m37-2101bg",
+    "img": "https://merlons.ge/cdn/shop/files/M37-2101BG-01-white.png?v=1788594764&width=2048",
+    "name": "Empolo DAVA M37 2101BG, ერთბერკეტიანი",
+    "dims": "სიმაღლე და ცხვირი გვერდზე არ წერია",
+    "color": "დავარცხნილი ოქროსფერი",
+    "weak": "ფორმა ვერ გადავამოწმე; სურათზე შეადარეთ",
+    "price": 387,
+    "priceNote": "2026-11-01: მარაგშია",
+    "est": false,
+    "match": "close"
+   },
+   {
+    "tier": "top",
+    "shop": "jaokeni.ge",
+    "url": "https://jaokeni.ge/santeqnika/shemrevi-onkani/samzareulos-shemrevi-onkani/სამზარეულოს-შემრევი-ონკანი-17523sb-t90-miscelatore-lav.-tubo-silic/",
+    "img": "",
+    "name": "Teorema 17523SB-T90 „Soft Brass“",
+    "dims": "გვერდი დღეს არ გადამიმოწმებია",
+    "color": "რბილი თითბერი",
+    "weak": "ფორმა არ გადამიმოწმებია; ფასი ოქტომბრის კვლევიდანაა",
+    "price": 955,
+    "priceNote": "ფასი ოქტომბრის კვლევიდან, დღეს არ შემოწმებულა",
+    "est": false,
+    "match": "close"
+   }
+  ],
+  "notes": "ზუსტად „Г“-ებრ ცხვირიანი ოქროსფერი ონკანი ქართულ მაღაზიაში ვერ დავადასტურე — სამივე ფორმა სურათზე უნდა შეადაროთ დიზაინერის ნახაზს. სიმაღლე შეამოწმეთ ზედა კარადამდე (ქვედა წიბო 150 სმ-ზე)."
+ },
+ {
+  "id": "ki-fridge",
+  "designer": "მაცივარი სვეტშია დამალული — კრემისფერი მქრქალი უსახელურო სამ ნაწილად; გარედან არაფერი ჩანს.",
+  "keep": [],
+  "drop": [
+   "Gorenje NRKI418EP1",
+   "Haier HBQW5519E (მაღალი კლასი)",
+   "Bosch KIS87AFE0",
+   "Midea MDRE379FGE01",
+   "Vestel RF380BI",
+   "Ardesto DNF-MBI177DD",
+   "Midea MDRE353FGE01",
+   "Hisense RB3B280SAW1 (მაღალი, 54 სმ)",
+   "Marazzi MBI-BC2-284W-H (მაღალი, 54 სმ)",
+   "Beko BCNA306E2S (მაღალი, 54 სმ)",
+   "Krogh KBR 9354 (მაღალი, 54 სმ)",
+   "Staylux BCT-248 PROMO (177 სმ-იანი კლასი)",
+   "Electrolux LNA7NE18S (177 სმ-იანი კლასი)"
+  ],
+  "options": [
+   {
+    "tier": "eco",
+    "shop": "megatechnica.ge",
+    "url": "https://www.megatechnica.ge/ka/product/8085/chasashenebeli-matsivari-hisense-rb3b250saw1",
+    "img": "https://www.megatechnica.ge/storage/312351bff07989769097660a56395065/45c48cce2e2d7fbdea1afc51c7c6ad26/c81e728d9d4c2f636f067f89cc14862c/c20ad4d76fe97759aa27a0c99bff6710/c81e728d9d4c2f636f067f89cc14862c/d81bbdd501fda90ca1c7ebfc6a69ce26.jpg",
+    "name": "ჩასაშენებელი მაცივარი Hisense RB3B250SAW1",
+    "dims": "ნიშა 54 სმ × 177.2 სმ",
+    "color": "თეთრი, მოსაპირკეთებელი ავეჯის კარით",
+    "weak": "",
+    "price": 1799,
+    "priceNote": "2026-11-01: 1799 (იყო 2199); ოქტომბერში 1499 ₾ იყო — ფასი გაიზარდა",
+    "est": false,
+    "match": "same"
+   },
+   {
+    "tier": "mid",
+    "shop": "ee.ge",
+    "url": "https://ee.ge/macivari/gorenje-nrki517e42-p11804",
+    "img": "https://static.ee.ge/Elite/1b93c6aa-af7e-4056-bc14-3f217d34338b_Thumb.png",
+    "name": "Gorenje NRKI517E42, ჩასაშენებელი",
+    "dims": "54 × 177.2 × 54.5 სმ, 252 ლ",
+    "color": "თეთრი, ავეჯის კარით",
+    "weak": "",
+    "price": 1999.99,
+    "priceNote": "2026-11-01: 1999.99 (იყო 2149.99); მარაგი „შემოწმება“",
+    "est": false,
+    "match": "same"
+   },
+   {
+    "tier": "top",
+    "shop": "ee.ge",
+    "url": "https://ee.ge/macivari/marazzi-mbi-bc2-251w-h-p10608",
+    "img": "https://static.ee.ge/Elite/ca5f4644-dc27-4204-ab4d-136153f84e1b_Thumb.png",
+    "name": "Marazzi MBI-BC2-251W-H, ჩასაშენებელი",
+    "dims": "სიგანე 55 სმ, 177.2 სმ, 256 ლ",
+    "color": "თეთრი, ავეჯის კარით",
+    "weak": "ნიშის სიგანე გვერდზე არ წერია",
+    "price": 1499.99,
+    "priceNote": "2026-11-01: 1499.99 (იყო 1899.99)",
+    "est": false,
+    "match": "same"
+   }
+  ],
+  "notes": "სვეტის შიგა სიგანე 70 სმ, ამიტომ 54–56 სმ-იანი ნიშა ეტევა; ფართო (69 სმ) მხოლოდ სვეტის გაფართოებით. დიზაინერის სამ ნაწილად დაყოფილი ფასადი მაცივრის კარს უნდა მიუსადაგდეს — ოსტატს ჰკითხეთ. ფასები ოქტომბერთან შედარებით შეიცვალა — შეარჩიეთ ახალი."
+ },
+ {
+  "id": "ki-oven",
+  "designer": "ქურის ქვეშ ჩაშენებული მთლიანად შავი მინის ღუმელი, ზედა ზოლზე ციფრული ეკრანი, ამობურცული სახელურების გარეშე.",
+  "keep": [],
+  "drop": [
+   "Hisense BI62220ABGUK",
+   "Gorenje BO6737E02ABGN",
+   "Bosch HBF512BB1T",
+   "Hoffmann NERO-444",
+   "Kumtel A6-SF3 (DDT) BLACK (M-1)",
+   "Hausberg 06 DG BL ECO",
+   "Midea MO27000GB",
+   "Samsung NV68A1110BB/WT",
+   "Kuppersberg HO 603 Black Glass"
+  ],
+  "options": [
+   {
+    "tier": "eco",
+    "shop": "megatechnica.ge",
+    "url": "https://www.megatechnica.ge/ka/product/9227/chasashenebeli-ghumeli-simfer-oesb67b",
+    "img": "https://www.megatechnica.ge/storage/c92a10324374fac681719d63979d00fe/d3d9446802a44259755d38e6d163e820/45c48cce2e2d7fbdea1afc51c7c6ad26/70efdf2ec9b086079795c442636b55fb/8f14e45fceea167a5a36dedd4bea2543/ca35023acad756f021c02ed26aa14d61.jpg",
+    "name": "Simfer OESB67B",
+    "dims": "60 სმ",
+    "color": "შავი მინა, ეკრანი, სენსორული ღილაკები",
+    "weak": "ამოსაწევი რუხი ღილაკები (სახელურები) აქვს",
+    "price": 599,
+    "priceNote": "2026-11-01: 599 (იყო 799); ოქტომბერში 499",
+    "est": false,
+    "match": "close"
+   },
+   {
+    "tier": "mid",
+    "shop": "megatechnica.ge",
+    "url": "https://www.megatechnica.ge/ka/product/5803/chasashenebeli-ghumeli-samsung-nv7b41207akwt",
+    "img": "https://www.megatechnica.ge/storage/5531a5834816222280f20d1ef9e95f69/a87ff679a2f3e71d9181a67b7542122c/1679091c5a880faf6fb5e6087eb1b2dc/aab3238922bcc25a6f606eb525ffdc56/8f14e45fceea167a5a36dedd4bea2543/64ecdaf5114a0d308e818b6e2fc22f02.jpg",
+    "name": "Samsung NV7B41207AK/WT",
+    "dims": "60 სმ",
+    "color": "შავი მინა",
+    "weak": "",
+    "price": 1199,
+    "priceNote": "2026-11-01: 1199 (იყო 1499)",
+    "est": false,
+    "match": "same"
+   },
+   {
+    "tier": "top",
+    "shop": "megatechnica.ge",
+    "url": "https://www.megatechnica.ge/ka/product/6523/chasashenebeli-ghumeli-electrolux-eod5h70bz",
+    "img": "https://www.megatechnica.ge/storage/5531a5834816222280f20d1ef9e95f69/c20ad4d76fe97759aa27a0c99bff6710/c51ce410c124a10e0db5e4b97fc2af39/6f4922f45568161a8cdf4ad2299f6d23/9f61408e3afb633e50cdf1b20de6f466/5f1a7fb20f69695f891b2c10bebda2de.jpg",
+    "name": "Electrolux EOD5H70BZ",
+    "dims": "60 სმ",
+    "color": "შავი მინა",
+    "weak": "ეკრანი გვერდზე არ წერია",
+    "price": 1099,
+    "priceNote": "2026-11-01: 1099 (იყო 1289); ოქტომბერში 949",
+    "est": false,
+    "match": "close"
+   }
+  ],
+  "notes": "Gorenje BO6737E02ABGN (999.99 ₾, შავი, ეკრანით, ee.ge) კარგი ალტერნატივაა."
+ },
+ {
+  "id": "ki-hob-mixed",
+  "designer": "შავი მინის ქურა: ერთ მხარეს გაზის სანთურები თუჯის სადგამით, მეორე მხარეს ბრტყელი ინდუქცია.",
+  "keep": [],
+  "drop": [
+   "Gorenje GE690X",
+   "Electrolux EGE6172NOK",
+   "Gorenje GCE691BSC"
+  ],
+  "options": [
+   {
+    "tier": "mid",
+    "shop": "metromart.ge",
+    "url": "https://metromart.ge/ka_GE/shop/product/4798-CasaSenebeli-zedapiri-AEG-HDB64623NB-Savi-24487",
+    "img": "https://metromart.ge/website/image/product.template/24487/image?unique=1df456f",
+    "name": "AEG HDB64623NB, 2 გაზი + 2 ინდუქცია",
+    "dims": "სიგანე 590 მმ",
+    "color": "შავი მინა",
+    "weak": "",
+    "price": 1449.95,
+    "priceNote": "2026-11-01: 1449.95 (იყო 1569.95); მარაგი გვერდზე არ წერია",
+    "est": false,
+    "match": "same"
+   },
+   {
+    "tier": "top",
+    "shop": "kuppersberg.ge",
+    "url": "https://kuppersberg.ge/kombinirebuli-zedapiri-kh-604-b/",
+    "img": "",
+    "name": "Krogh KH 604 B, კომბინირებული ზედაპირი",
+    "dims": "60 სმ",
+    "color": "შავი",
+    "weak": "გვერდი დღეს არ გადამიმოწმებია; ინდუქციაა თუ ელექტრო — დაადასტურეთ",
+    "price": 1549,
+    "priceNote": "ფასი ოქტომბრის კვლევიდან",
+    "est": false,
+    "match": "close"
+   },
+   {
+    "tier": null,
+    "shop": "teka.ge",
+    "url": "https://teka.ge/product/60-სმ-იანი-გაზი-ინდუქციური-ქ/",
+    "img": "",
+    "name": "Teka JZC 64322 ABN, გაზი + ინდუქცია",
+    "dims": "60 სმ",
+    "color": "შავი",
+    "weak": "ფასი საიტზე არ წერია",
+    "price": null,
+    "priceNote": "ფასი მხოლოდ ტელეფონით: 032 220 20 07 (ბარათით 25%)",
+    "est": false,
+    "match": "same"
+   }
+  ],
+  "notes": "შერეული გაზი+ინდუქცია საქართველოში ორი მოდელია (AEG, Teka); იაფი ვარიანტი არ არის. ინდუქციას ცალკე ელექტროხაზი სჭირდება."
+ },
+ {
+  "id": "ki-hood",
+  "designer": "გამწოვი არ ჩანს — დამალულია ქურის თავზე ზედა კარადაში მუხის შპონის კარების უკან.",
+  "keep": [],
+  "drop": [
+   "Elikor Slide 60П-430",
+   "AEG DGB3523S",
+   "Electrolux LFP326FB",
+   "Gorenje BHI611ES",
+   "Elica Era C BL/A/52",
+   "Kuppersberg INBOX 54 B",
+   "Indesit INAE 52FLS X",
+   "Hansa OMP6212SIH",
+   "Marazzi MVBHD-60FB700(SS)",
+   "Elikor Врезной блок 52Н-400-П3Д",
+   "Ardesto HFI-F700MW"
+  ],
+  "options": [
+   {
+    "tier": "eco",
+    "shop": "megatechnica.ge",
+    "url": "https://www.megatechnica.ge/ka/product/6512/gamtsovi-elikor-vreznoy-blok-box-52p-700-chern",
+    "img": "https://www.megatechnica.ge/storage/5531a5834816222280f20d1ef9e95f69/c20ad4d76fe97759aa27a0c99bff6710/c20ad4d76fe97759aa27a0c99bff6710/c20ad4d76fe97759aa27a0c99bff6710/1f0e3dad99908345f7439f8ffabdffc4/39d92a599d042987d6b77dce6f7c391c.jpg",
+    "name": "Elikor BOX 52П-700, ჩასაშენებელი ბლოკი, შავი",
+    "dims": "სიგანე 52 სმ, 700 მ³/სთ",
+    "color": "შავი",
+    "weak": "",
+    "price": 359,
+    "priceNote": "2026-11-01: 359 (იყო 449)",
+    "est": false,
+    "match": "same"
+   },
+   {
+    "tier": "mid",
+    "shop": "megatechnica.ge",
+    "url": "https://www.megatechnica.ge/ka/product/6243/gamtsovi-electrolux-lfg525s",
+    "img": "https://www.megatechnica.ge/storage/5531a5834816222280f20d1ef9e95f69/45c48cce2e2d7fbdea1afc51c7c6ad26/c20ad4d76fe97759aa27a0c99bff6710/c74d97b01eae257e44aa9d5bade97baf/eccbc87e4b5ce2fe28308fd9f2a7baf3/e04e5d5e1b8064e403434fe044d1660f.jpg",
+    "name": "Electrolux LFG525S",
+    "dims": "52 × 28.5 × 24.5 სმ",
+    "color": "ვერცხლისფერი",
+    "weak": "გვერდი ჩასაშენებლად არ ასახელებს — წინა ზოლი კარების ქვეშ ჩანდეს შეიძლება",
+    "price": 499,
+    "priceNote": "2026-11-01: 499 (იყო 519); ოქტომბერში 419",
+    "est": false,
+    "match": "close"
+   },
+   {
+    "tier": "top",
+    "shop": "ee.ge",
+    "url": "https://ee.ge/gamtsovi/gorenje-bhi549e9gb-p21968",
+    "img": "https://static.ee.ge/Elite/2900279a-403c-486b-a230-dd97171a077c_Thumb.jpeg",
+    "name": "Gorenje BHI549E9GB, ჩასაშენებელი, 900 მ³/სთ",
+    "dims": "სიგანე 52 სმ",
+    "color": "შავი",
+    "weak": "",
+    "price": 599.99,
+    "priceNote": "2026-11-01: 599.99 (იყო 799.99)",
+    "est": false,
+    "match": "same"
+   }
+  ],
+  "notes": "ქურიდან ზედა კარადამდე 60 სმ-ია, გაზის სანთურზე ინსტრუქციები ხშირად 65 სმ-ს ითხოვს — მწარმოებლის მინიმუმი ყიდვამდე შეამოწმეთ."
+ }
+]

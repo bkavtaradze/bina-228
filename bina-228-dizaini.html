@@ -1,0 +1,926 @@
+<!doctype html>
+<html lang="ka">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ბინა №228 — დიზაინი</title>
+<style>
+  :root {
+    --bg: #f4f2ee; --panel: #fffdf9; --ink: #22262b; --muted: #6b7178; --line: #ddd8cf;
+    --wall: #343a42; --dim: #4a5560; --neg: #c0392b; --pos: #1e7f4f; --accent: #2f5d8a; --paper: #fbfaf7;
+    --led: #c9820a; --lamp: #b3261e; --sw: #2f5d8a; --oak: #c9a67c; --front: #f1eee7; --stone: #e3ded4;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #16181b; --panel: #1e2125; --ink: #e8e6e1; --muted: #9aa0a6; --line: #33373d;
+      --wall: #d9d6cf; --dim: #aab2ba; --neg: #ff8a7a; --pos: #63d6a0; --accent: #86b7e6; --paper: #1b1e22;
+      --led: #f0b040; --lamp: #ff8a7a; --sw: #86b7e6; --oak: #8a6a48; --front: #3a3d42; --stone: #55585c;
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body { background: var(--bg); color: var(--ink); font: 15px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans Georgian", "BPG Arial", sans-serif; }
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 16px; }
+  .top { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+  h1 { font-size: 20px; margin: 0; letter-spacing: -0.01em; }
+  .sub { color: var(--muted); font-size: 13px; }
+  .sub a, .note a, td a { color: var(--accent); }
+  .seg { display: inline-flex; border: 1px solid var(--line); border-radius: 9px; overflow: hidden; background: var(--panel); flex-wrap: wrap; }
+  .seg button { border: 0; background: transparent; color: var(--ink); font: inherit; font-size: 13.5px; padding: 7px 13px; cursor: pointer; border-right: 1px solid var(--line); }
+  .seg button:last-child { border-right: 0; }
+  .seg button.on { background: var(--accent); color: #fff; }
+  .seg button:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+  .toolbar { display: flex; flex-wrap: wrap; gap: 8px 10px; align-items: center; margin-bottom: 12px; }
+  .grow { flex: 1; }
+  .btn { border: 1px solid var(--line); background: var(--panel); color: var(--ink); font: inherit; font-size: 13.5px; padding: 7px 13px; border-radius: 9px; cursor: pointer; }
+  .btn:hover { border-color: var(--accent); }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; margin-bottom: 14px; }
+  .card h2 { font-size: 16px; margin: 0 0 10px; }
+  .card h3 { font-size: 14px; margin: 16px 0 6px; }
+  .note { font-size: 13px; color: var(--muted); margin: 8px 0 0; }
+  .hidden { display: none !important; }
+  ul.plain { margin: 0; padding-left: 18px; }
+  ul.plain li { margin: 5px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; font-variant-numeric: tabular-nums; }
+  th { text-align: right; font-weight: 500; color: var(--muted); font-size: 12px; padding: 4px 8px 6px 0; vertical-align: bottom; }
+  td { padding: 6px 8px 6px 0; border-top: 1px solid var(--line); text-align: right; vertical-align: top; }
+  th:first-child, td:first-child { text-align: left; }
+  td.l, th.l { text-align: left; }
+  tr.sum td { font-weight: 650; border-top: 2px solid var(--line); }
+  tr.grp td { font-weight: 650; padding-top: 16px; border-top: 0; font-size: 14px; }
+  td small { color: var(--muted); display: block; font-size: 12px; }
+  .est { font-size: 11px; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 0 6px; margin-left: 6px; white-space: nowrap; }
+  .est.bought { color: var(--pos); border-color: var(--pos); font-weight: 600; }
+  input.price { width: 86px; font: inherit; font-size: 13.5px; text-align: right; padding: 4px 6px; border: 1px solid var(--line); border-radius: 7px; background: var(--paper); color: var(--ink); }
+
+  /* pictures */
+  .gal { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .gal figure { margin: 0; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; cursor: zoom-in; }
+  .gal figure.wide { grid-column: 1 / -1; max-width: 620px; }
+  .gal img { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; background: #2a2622; }      /* the designer's kitchen picture is square: show all of it */
+  .pgh { font-size: 16px; margin: 18px 0 10px; }
+  .pg { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 14px; }
+  .pg figure { margin: 0; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; cursor: zoom-in; }
+  .pg img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; background: #2a2622; }
+  .pg figcaption { padding: 8px 12px; font-size: 13.5px; }
+  #lightbox { position: fixed; inset: 0; background: rgba(0,0,0,.9); display: flex; align-items: center; justify-content: center; z-index: 10; cursor: zoom-out; }
+  #lightbox img { max-width: 100vw; max-height: 100vh; }
+
+  /* style sheet */
+  .sw { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+  .sw div { border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: var(--panel); }
+  .sw i { display: block; height: 84px; }
+  .sw b { display: block; padding: 8px 10px 0; font-size: 13.5px; }
+  .sw span { display: block; padding: 0 10px 9px; font-size: 12.5px; color: var(--muted); }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .two .card { margin-bottom: 0; }
+  .yes li::marker { content: "✓  "; color: var(--pos); } .no li::marker { content: "✕  "; color: var(--neg); }
+
+  /* drawings */
+  .draw { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  .draw svg { display: block; width: 100%; height: auto; }
+  svg text { font-family: inherit; fill: var(--ink); }
+  .kwall { fill: none; stroke: var(--wall); stroke-width: 14; }
+  .kfront { fill: var(--front); stroke: var(--wall); stroke-width: 7; }
+  .koak { fill: var(--oak); stroke: var(--wall); stroke-width: 7; }
+  .kdark { fill: #2b2d30; stroke: var(--wall); stroke-width: 7; }
+  .kstone { fill: var(--stone); stroke: var(--wall); stroke-width: 7; }
+  .ksplash { fill: color-mix(in srgb, var(--stone) 45%, transparent); stroke: none; }
+  .kdash { fill: none; stroke: var(--dim); stroke-width: 6; stroke-dasharray: 22 16; }
+  .kt { font-size: 62px; text-anchor: middle; }
+  .kts { font-size: 50px; text-anchor: middle; fill: var(--muted); }
+  .khalo { paint-order: stroke; stroke: var(--oak); stroke-width: 26px; stroke-linejoin: round; }
+  .dl { stroke: var(--dim); stroke-width: 6; }
+  .dt { font-size: 66px; text-anchor: middle; font-variant-numeric: tabular-nums; paint-order: stroke; stroke: var(--paper); stroke-width: 18px; stroke-linejoin: round; }
+  .lf { fill: color-mix(in srgb, var(--line) 35%, transparent); }
+  .lw { fill: var(--wall); } .lo { fill: var(--paper); stroke: var(--wall); stroke-width: 10; }
+  .lfu { fill: none; stroke: var(--dim); stroke-width: 8; stroke-dasharray: 34 26; opacity: .55; }
+  .lbeam { fill: color-mix(in srgb, var(--neg) 12%, transparent); stroke: var(--neg); stroke-width: 7; stroke-dasharray: 60 34; }
+  .lspot, .ltwin { fill: var(--paper); stroke: var(--lamp); stroke-width: 13; }
+  .ltw { fill: var(--lamp); }
+  .llin { stroke: var(--lamp); stroke-width: 44; stroke-linecap: round; }
+  .ltick { stroke: var(--lamp); stroke-width: 34; }
+  .lwl { fill: var(--lamp); stroke: var(--paper); stroke-width: 10; }
+  .lpen { fill: var(--lamp); }
+  .lled { stroke: var(--led); stroke-width: 46; stroke-linecap: round; }
+  .ltrack { stroke: var(--ink); stroke-width: 26; }
+  .lsw { fill: var(--sw); }
+  .lsock { fill: none; stroke: var(--dim); stroke-width: 10; }
+  .lpt { fill: var(--paper); stroke: var(--ink); stroke-width: 12; }
+  .lpkc { fill: color-mix(in srgb, var(--sw) 14%, transparent); stroke: var(--sw); stroke-width: 7; stroke-dasharray: 26 18; }
+  .lpkl { fill: color-mix(in srgb, var(--led) 18%, transparent); stroke: var(--led); stroke-width: 7; }
+  .lpkf { fill: color-mix(in srgb, var(--led) 30%, transparent); stroke: var(--led); stroke-width: 7; stroke-dasharray: 8 14; }
+  .lt { font-size: 112px; font-weight: 650; text-anchor: middle; }
+  .lt.c { fill: var(--lamp); } .lt.e { fill: var(--led); } .lt.w { fill: #fff; } .lt.h { paint-order: stroke; stroke: var(--paper); stroke-width: 34px; stroke-linejoin: round; } .lt.m { fill: var(--muted); font-weight: 400; font-size: 100px; } .lt.s { fill: var(--sw); font-size: 88px; }
+  .lhs { font-size: 78px; font-weight: 400; fill: var(--muted); }
+  .lroom { font-size: 150px; fill: var(--muted); text-anchor: middle; opacity: .8; }
+  .legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 12.5px; color: var(--muted); padding: 8px 12px; border-top: 1px solid var(--line); }
+  .legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 5px; vertical-align: -1px; }
+  .draw .legend svg { display: inline-block; width: 30px; height: 14px; margin-right: 5px; vertical-align: -2px; }
+  .code { display: inline-block; min-width: 22px; text-align: center; font-weight: 650; border: 1.5px solid currentColor; border-radius: 999px; padding: 0 5px; font-size: 12.5px; }
+  .code.c { color: var(--lamp); } .code.e { color: var(--led); } .code.s { color: #fff; background: var(--sw); border-color: var(--sw); border-radius: 4px; }
+
+  @media (max-width: 860px) { .est { white-space: normal; } .gal, .two { grid-template-columns: 1fr; } .pg { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; } #tab-style table, #tab-style tr, #tab-style td { display: block; } #tab-style tr:first-child { display: none; } #tab-style tr { padding: 10px 0; border-top: 1px solid var(--line); } #tab-style td { padding: 2px 0; border: 0; text-align: left; } #tab-style td:first-child { font-weight: 600; } #tab-style td.l::before { content: attr(data-l) ': '; color: var(--muted); } }
+  @media print {
+    :root { --bg: #fff; --panel: #fff; --ink: #111; --muted: #555; --line: #bbb; --wall: #222; --dim: #333; --paper: #fff; --neg: #b3261e; --pos: #1e7f4f; --accent: #2f5d8a; --led: #b36b00; --lamp: #b3261e; --sw: #2f5d8a; --oak: #c9a67c; --front: #f4f2ec; --stone: #e3ded4; }
+    @page { size: A4; margin: 10mm; }
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; font-size: 12px; }
+    #tabs, .toolbar, .back, input.price { display: none !important; }
+    .wrap { padding: 0; max-width: none; }
+    .card, .draw { break-inside: avoid; border-color: #ccc; }
+    .gal figure, .pg figure { break-inside: avoid; }
+    a { color: inherit; text-decoration: none; }
+  }
+
+  /* plumbing: points on the plan and on two bathroom walls */
+  .pdot { display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 5px; vertical-align: -1px; }
+  .pdot.w, .pw { background: var(--sw); fill: var(--sw); } .pdot.d, .pd { background: #8a6234; fill: #8a6234; } .pdot.b { background: linear-gradient(90deg, var(--sw) 50%, #8a6234 50%); }
+  .pdot.h, .ph { background: var(--lamp); fill: var(--lamp); } .pdot.c, .pc { background: var(--dim); fill: var(--dim); }
+  .pmark { stroke: var(--paper); stroke-width: 18; } .pnum { font-size: 150px; font-weight: 700; text-anchor: middle; fill: #fff; }
+  .ewall { fill: var(--paper); stroke: var(--wall); stroke-width: 12; } .ething { fill: color-mix(in srgb, var(--stone) 60%, transparent); stroke: var(--dim); stroke-width: 6; }
+  .eglass { stroke: var(--sw); stroke-width: 10; stroke-dasharray: 40 24; } .edash { fill: none; stroke: var(--dim); stroke-width: 6; stroke-dasharray: 30 22; }
+  .edrain { stroke: #8a6234; stroke-width: 34; } .elab { font-size: 58px; fill: var(--muted); } .ept { font-size: 64px; font-weight: 650; paint-order: stroke; stroke: var(--paper); stroke-width: 16px; stroke-linejoin: round; }
+  .card.pnote { font-size: 14px; }
+  #ptable td:nth-child(1) { white-space: nowrap; } #ptable td { text-align: left; } #ptable th { text-align: left; }
+
+  #stot span { font-size: 13px; font-weight: 600; color: var(--muted); }
+  #stot b { display: block; font-size: 38px; line-height: 1.15; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+  #stot p { margin: 6px 0 0; font-size: 13px; color: var(--muted); }
+
+  /* stages: one closed card per stage, with its dates in the header */
+  input.sdate { font: inherit; font-size: 13.5px; padding: 5px 8px; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); color: var(--ink); margin-left: 6px; }
+  .est.now { color: var(--accent); border-color: var(--accent); font-weight: 600; }
+  .sg .bgn .est { vertical-align: 2px; }
+  .sg.sdone .bgn { color: var(--muted); font-weight: 400; }
+  .sblk { margin: 14px 0 0; max-width: 940px; } .sblk:last-child { margin-bottom: 16px; }
+  .sblk h4 { margin: 0 0 4px; font-size: 13px; color: var(--muted); font-weight: 650; }
+  .sdl { white-space: nowrap; font-size: 12.5px; color: var(--muted); margin-left: 6px; }
+  .sdl.soon { color: var(--led); font-weight: 600; } .sdl.late { color: var(--neg); font-weight: 600; }
+  .bgh input { margin: 0 6px 0 0; width: 16px; height: 16px; accent-color: var(--accent); cursor: pointer; flex: none; }
+  .bhelp { font-size: 13px; color: var(--muted); margin-top: 10px; }
+  .bhelp summary { cursor: pointer; color: var(--accent); width: fit-content; }
+  .bhelp ul { margin: 8px 0 0; max-width: 900px; }
+
+  /* a stage card: its header carries the tick, the name and the dates, and stays in sight while its text scrolls */
+  .bg { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; margin-bottom: 10px; }
+  .bgh { display: flex; align-items: center; padding: 0 8px 0 18px; position: sticky; top: 0; z-index: 2; background: var(--panel); border-radius: 12px; }
+  .bg.open > .bgh { border-bottom: 1px solid var(--line); border-radius: 12px 12px 0 0; background: color-mix(in srgb, var(--accent) 8%, var(--panel)); }
+  .bgt { flex: 1; min-width: 0; display: flex; align-items: center; gap: 14px; border: 0; background: none; color: inherit; font: inherit; text-align: left; padding: 15px 10px 15px 4px; cursor: pointer; }
+  .bgt:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 8px; }
+  .bgn { flex: 1; min-width: 0; font-size: 16px; font-weight: 650; }
+  .bgn small { font-weight: 400; color: var(--muted); font-size: 12.5px; margin-left: 10px; white-space: nowrap; }
+  .bgt b { font-size: 17px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .chev { flex: none; width: 9px; height: 9px; border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted); transform: rotate(45deg); margin: -5px 6px 0 2px; }
+  .bg.open .chev { transform: rotate(-135deg); margin-top: 5px; }
+  .bgb { padding: 0 18px; }
+  .bg:not(.open) > .bgb { display: none; }
+
+  @media screen and (max-width: 720px) {
+    #stot b { font-size: 32px; }
+    .bgh { padding: 0 4px 0 12px; } .bgb { padding: 0 12px; }
+    .bgt { gap: 8px; padding: 12px 6px 12px 2px; } .bgn { font-size: 15px; } .bgn small { display: block; margin: 0; } .bgt b { font-size: 15px; }
+    .sg .bgt { flex-wrap: wrap; row-gap: 4px; } .sg .bgt b { order: 3; flex-basis: 100%; font-size: 13.5px; color: var(--muted); }      /* a stage's dates go under its name */
+  }
+  @media print {
+    .bhelp, .chev, .bgh input { display: none !important; }
+    .bg:not(.open) > .bgb { display: block; }
+    .bgh { position: static; } .bg { border-color: #ccc; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>ბინა №228 — დიზაინი</h1>
+      <div class="sub">დიზაინერის საბოლოო პროექტი (IJ Design Studio, 10.2026): თბილი კრემისფერი, მუხა, მწვანე და თბილი აქცენტური კედლები, თითბრის დეტალები <span class="back">· <a href="index.html">← ბინა №228</a> · <a href="bina-228.html">← მოდელი და გეგმა</a> · <a href="index.html#fuli">ბიუჯეტი →</a> · <a href="design.pdf" target="_blank" rel="noopener">დიზაინ-პროექტი (PDF)</a></span></div>
+    </div>
+    <div class="seg" id="tabs">
+      <button data-tab="pics" class="on">სურათები</button>
+      <button data-tab="style">სტილი</button>
+      <button data-tab="kitchen">სამზარეულო</button>
+      <button data-tab="light">განათება</button>
+      <button data-tab="plumb">სანტექნიკა</button>
+      <button data-tab="stages">ეტაპები</button>
+    </div>
+  </header>
+
+  <!-- ---------- pictures ---------- -->
+  <section id="tab-pics">
+    <div class="toolbar"><span class="sub">დიზაინერის სურათები · დააჭირე სურათს — გადიდდება · საბოლოო ნახაზები და ზომები — <a href="design.pdf" target="_blank" rel="noopener">დიზაინ-პროექტი (PDF)</a></span></div>
+    <div id="gal"></div>
+  </section>
+
+  <!-- ---------- style ---------- -->
+  <section id="tab-style" class="hidden">
+    <div class="card">
+      <h2>საღებავი — დიზაინერის ფერთა გამა (Caparol)</h2>
+      <div class="sw">
+        <div><i style="background:#EFE8DC"></i><b>Caparol Cremeweiss</b><span>ძირითადი ფერი — კედლები ყველა ოთახში</span></div>
+        <div><i style="background:#8A8A7C"></i><b>Caparol Oase 45</b><span>აქცენტი მისაღებში და სამზარეულოში — კედელი სასადილო მაგიდის უკან</span></div>
+        <div><i style="background:#F0E4DF"></i><b>Caparol Flora 15</b><span>აქცენტი მისაღებში — დივნის ნიშა</span></div>
+        <div><i style="background:#EADFD4"></i><b>Caparol Amber 20</b><span>აქცენტი ბავშვების ოთახში (საძინებელი №3) — სამუშაო მაგიდის კედელი</span></div>
+        <div><i style="background:#9C8A7C"></i><b>Caparol Siena 40</b><span>აქცენტი ბავშვების ოთახში — კედელი საწოლების უკან</span></div>
+        <div><i style="background:#F4F3EF"></i><b>Caparol, ორთქლგამძლე ჭერის საღებავი</b><span>სააბაზანოს ჭერი</span></div>
+      </div>
+      <p class="note"><b>დიზაინერის შენიშვნა საღებავზე:</b> ჯერ მითითებული კოდით მინიმალური რაოდენობა იყიდე, სატესტო ფურცელი შეღებე და შესაბამის კედელზე დადე. დანარჩენი მხოლოდ მაშინ იყიდე, როცა გამშრალი ფერი დადასტურდება. ფერები აქ ეკრანზე მიახლოებითაა.</p>
+      <h3>მასალები</h3>
+      <div class="sw">
+        <div><i style="background:#B08A62"></i><b>ნაძვისებრი ლამინატი ან პარკეტი</b><span>იატაკი ყველგან, სააბაზანოს გარდა. აირჩიე სააბაზანოს ფილის დაგებამდე, რომ იატაკის დონეები ერთმანეთს დაემთხვეს</span></div>
+        <div><i style="background:#C49A6C"></i><b>მუხის შპონი (ან იმიტაცია)</b><span>ავეჯის ფასადები: სამზარეულოს ზედა კარადები, კარადები, ტელევიზორის ტუმბო</span></div>
+        <div><i style="background:#D9CBB9"></i><b>ბამბუკის ფაქტურის პანელი</b><span>ტელევიზორის კედელი მისაღებში და საწოლის თავის კედელი საძინებელ №4-ში</span></div>
+        <div><i style="background:#9C9A95"></i><b>კერამოგრანიტი 1200 × 600, ბეტონისფერი</b><span>სააბაზანოს კედლები, ჭერამდე — 30 ფილა</span></div>
+        <div><i style="background:#CFC6BC"></i><b>კერამოგრანიტი 1200 × 600, ტერაცო</b><span>სააბაზანოს იატაკი და საშხაპის კედელი — 19 ფილა</span></div>
+        <div><i style="background:#B8935C"></i><b>თითბერი</b><span>ონკანები, ბრები, წვრილი ზოლები კედლის პანელებზე</span></div>
+      </div>
+      <h3>სააბაზანოს ფილა — დიზაინერის შენიშვნები</h3>
+      <ul class="plain">
+        <li>ნაკერი 1 მმ. ფილის კუთხეები 45°-ით წაკვეთილი, ერთმანეთზე მიდგმული.</li>
+        <li>იატაკი და კედლების ნაწილი ჰიდროიზოლაციით; იატაკისა და კედლის შეერთებაზე და კედლის კუთხეებში — საიზოლაციო ლენტი.</li>
+        <li>სამზარეულოს ფართუკი — ფილა, სუფთა იატაკიდან 90-დან 150 სმ-მდე; იგივე ფილა ქურის მხარეს გვერდით კედელზე, 90 სმ-დან ჭერამდე.</li>
+      </ul>
+      <h3>დამხმარე ფერები</h3>
+      <div class="sw">
+        <div><i style="background:#C1B4A6"></i><b>ღია ნაცრისფერ-კრემისფერი</b><span>ჩაშენებული კარადები ჰოლში და საძინებლებში</span></div>
+        <div><i style="background:#C29A72"></i><b>ქარამელისფერი</b><span>დივანი და პუფი მისაღებში</span></div>
+        <div><i style="background:#6B4A36"></i><b>მუქი კაკალი</b><span>თარო ჰოლში, კარადების გრძელი სახელურები, თაროები საძინებელ №3-ში</span></div>
+        <div><i style="background:#8A7260"></i><b>ნაცრისფერ-ყავისფერი ფარდა</b><span>მკვრივი ფარდები ყველა ფანჯარაზე, შიგნით თეთრი გამჭვირვალე ფარდა</span></div>
+        <div><i style="background:#EEEAE3"></i><b>ღია ქვა</b><span>სასადილო მაგიდა, სამზარეულოს ზედაპირი, ჟურნალის მაგიდა</span></div>
+        <div><i style="background:#26282B"></i><b>შავი — მხოლოდ წვრილ ხაზებად</b><span>სარკის ჩარჩო, ვიტრინის ჩარჩო, ჭერის ტრეკი, კარის სახელურები</span></div>
+      </div>
+      <p class="note">საღებავის კოდები და მასალები დიზაინერის საბოლოო ნახაზებიდანაა (IJ Design Studio, 10.2026, ფურცლები A.1–A.7). დამხმარე ფერები მის სურათებიდანაა ამოღებული და მიახლოებითია — შეძენამდე ნიმუში ადგილზე ნახე, დღის და საღამოს შუქზე.</p>
+    </div>
+    <div class="two">
+      <div class="card">
+        <h2>რა ახასიათებს ამ დიზაინს</h2>
+        <ul class="plain yes">
+          <li>სადა, სწორი ფასადები. სამზარეულო სახელურების გარეშეა; კარადებზე — ტყავის პატარა სახელური ან ერთი გრძელი ხის სახელური.</li>
+          <li>კარადები თითქმის ჭერამდეა (2,880, ჭერამდე 2 სმ) და კედელს ერწყმის; რიგელის ქვეშ მდგომი ორი — ჰოლის ვიწრო (01-B) და ბავშვების (04-A) — 2,650-ია.</li>
+          <li>მომრგვალებული კუთხეები: ტუმბო, თარო, მაგიდა, დივანი, მისაღების რიგელის დაღარული ყუთი, ტალღოვანი სარკე.</li>
+          <li>მუხის კარები კედელთან ერთ სიბრტყეშია, ზემოთ მუხის პანელით ჭერამდე.</li>
+          <li>ფარული თბილი განათება (3000K): ჭერის კიდეებზე, სარკეების უკან, ტუმბოების და თაროების ქვეშ, საწოლის თავთან.</li>
+          <li>ბამბუკის ფაქტურის პანელები: ტელევიზორის კედელი და საწოლის თავი.</li>
+          <li>ყველა ონკანი, ბრა და სახელური ერთ ფერშია — მქრქალი თითბერი ან ბრინჯაო.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h2>რომ სურათი არ დაირღვეს</h2>
+        <ul class="plain no">
+          <li>ცივი თეთრი ნათურები — ყველგან თბილი შუქია.</li>
+          <li>პრიალა ქრომი — ლითონი ყველგან მქრქალი თითბერი ან ბრინჯაოა.</li>
+          <li>ახალი ფერი — აქცენტები მხოლოდ დიზაინერის ოთხი Caparol-ის ფერია, თავ-თავის კედელზე.</li>
+          <li>ჭრელი ფილა — ერთადერთი ნახატიანი ზედაპირი ტერაცოა სააბაზანოში.</li>
+          <li>კარადებზე გამოშვერილი ლითონის სახელურები.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card" style="margin-top:14px">
+      <h2>მასალები ოთახების მიხედვით</h2>
+      <table>
+        <tr><th>ოთახი</th><th class="l">კედლები</th><th class="l">ავეჯი</th><th class="l">აქცენტი</th></tr>
+        <tr><td>მისაღები და სამზარეულო</td><td class="l" data-l="კედლები">Cremeweiss; სასადილოს კედელი Oase 45, დივნის ნიშა Flora 15; ტელევიზორის კედელი ბამბუკის ფაქტურის პანელებით</td><td class="l" data-l="ავეჯი">ქვედა კარადები თეთრი მქრქალი, ზედა — მუხის შპონი ორ რიგად 2,880-მდე, მაცივრის კარადა ნიშაში, ზედაპირი ღია ქვა, ფართუკი ფილა; მარმარილოს მაგიდა ხის სკამებით; მუხის დაკიდებული ტუმბო; ვიტრინა შავი ჩარჩოთი</td><td class="l" data-l="აქცენტი">ქარამელისფერი ხავერდის დივანი, მინის ორი ჭაღი მაგიდის თავზე</td></tr>
+        <tr><td>ჰოლი</td><td class="l" data-l="კედლები">Cremeweiss</td><td class="l" data-l="ავეჯი">კარადები 2,880-მდე (ვიწრო 01-B — 2,650, რიგელის ქვეშ) ტყავის სახელურებით; საძინებლის კარი მუხა, კედელთან სწორში</td><td class="l" data-l="აქცენტი">დიდი სარკე შავი ჩარჩოთი და უკნიდან განათებით, კაკლის თარო, ორი ჩამოკიდებული სანათი</td></tr>
+        <tr><td>საძინებელი №4</td><td class="l" data-l="კედლები">Cremeweiss; საწოლის თავთან ბამბუკის ფაქტურის პანელები</td><td class="l" data-l="ავეჯი">რბილი ღია საწოლი, კარადა გრძელი ხის სახელურით, წიგნის ვიწრო თარო, მრგვალი ტუმბო</td><td class="l" data-l="აქცენტი">ტალღოვანი სარკე განათებით, თითბრის ბრები, აგურისფერი პუფი</td></tr>
+        <tr><td>საძინებელი №3</td><td class="l" data-l="კედლები">Cremeweiss; საწოლების კედელი Siena 40, სამუშაო მაგიდის კედელი Amber 20</td><td class="l" data-l="ავეჯი">ორი ერთადგილიანი საწოლი ხავერდის თავით, გრძელი თეთრი მაგიდა ორი სკამით, კაკლის თაროები, ოთხკარიანი კარადა</td><td class="l" data-l="აქცენტი">ატმისფერი გადასაფარებლები, მწვანე და ნაცრისფერ-ლურჯი ბალიშები</td></tr>
+        <tr><td>სააბაზანო</td><td class="l" data-l="კედლები">ბეტონისფერი კერამოგრანიტი 1200 × 600 ჭერამდე; საშხაპის კედელი და იატაკი ტერაცო; ჭერი ორთქლგამძლე საღებავით</td><td class="l" data-l="ავეჯი">მუხის უჯრა ქვის ნიჟარით, დაკიდებული უნიტაზი ჩაშენებულ ყუთზე, მის ზემოთ დაღარული კარის კარადა, მინის ტიხარი</td><td class="l" data-l="აქცენტი">ბრინჯაოსფერი ონკანები, თეთრი პირსახოცის საშრობი, სარკე განათებით</td></tr>
+      </table>
+    </div>
+    <p class="note" style="margin:0 0 14px">ფერები, მასალები და ზომები დიზაინერის საბოლოო ნახაზებიდანაა — ფაილი <a href="design.pdf" target="_blank" rel="noopener">დიზაინ-პროექტი (PDF)</a>. ავეჯის და ფერის განწყობა — მის სურათებიდან (ჩანართი „სურათები“).</p>
+  </section>
+
+  <!-- ---------- kitchen ---------- -->
+  <section id="tab-kitchen" class="hidden">
+    <div class="toolbar"><span class="sub">ნახაზი ავეჯის ოსტატისთვის · ზომები მილიმეტრებში</span><span class="grow"></span><button class="btn" onclick="window.print()">ბეჭდვა / PDF</button></div>
+    <div class="gal" style="margin-bottom:14px"><figure class="wide" data-src="designer/WhatsApp%20Image%202026-10-09%20at%2011.57.46.jpeg"><img src="designer/WhatsApp%20Image%202026-10-09%20at%2011.57.46.jpeg" alt="სამზარეულო — დიზაინერის სურათი" loading="lazy"></figure></div>
+    <div class="draw" id="kdraw"></div>
+    <div class="card" style="margin-top:14px">
+      <h2>მოდულები მარცხნიდან მარჯვნივ</h2>
+      <table id="ktable"></table>
+      <p class="note">მოდელში ყველა კარი და უჯრა იღება: <a href="bina-228.html#at=2600,1900,-1,-0.25">გახსენი სამზარეულო მოდელში</a>, მიდი ახლოს და დააჭირე E-ს ან თაგვს.</p>
+    </div>
+    <div class="card">
+      <h2>რა უნდა იცოდეს ოსტატმა</h2>
+      <ul class="plain">
+        <li>ყველა ზომა დიზაინერის საბოლოო ნახაზებიდანაა (IJ Design Studio, 10.2026, A.3 და A.18). კედლის სიგრძე კუთხიდან მაცივრის ნიშამდე — 2,524 მმ; ქვედა და ზედა კარადები 2,494-ია, დანარჩენ 736-ს მაცივრის სვეტი იკავებს (A.18). შეკვეთამდე მაინც გადაზომე, ლესვის შემდეგ.</li>
+        <li>ზედა კარადები — ხუთი თანაბარი კარი, მუხის შპონი, ორ რიგად, ერთი და იგივე ნაკერებით (A.18): ქვედა რიგი 1,500-დან 2,500-მდე, ზედა რიგი 2,500-დან 2,880-მდე (ჭერამდე 20 მმ რჩება). სიღრმე 340 მმ. კარები 499 მმ სიგანისაა.</li>
+        <li>გამწოვი ბოლო ორი ზედა კარის უკან იმალება (მფლობელის გადაწყვეტილება, 12 ოქტომბერი). ეს ორი კარი ერთ 100 სმ-იან კარადას ხურავს: გამწოვის ბლოკი მის ძირში ზუსტად ქურის თავზე ჯდება, გვერდებზე და ზემოთ ადგილი სანელებლებს რჩება. ჰაერსატარი ზედა რიგის უკან გადის.</li>
+        <li>გამწოვის სიმაღლე შესამოწმებელია: ნახაზზე ქურიდან ზედა კარადის ძირამდე <span id="khgap"></span> მმ-ია, გამწოვების ინსტრუქციები კი გაზის სანთურების თავზე, როგორც წესი, მინიმუმ 650 მმ-ს ითხოვს (Electrolux LFG525S-ის ინსტრუქციაშიც ასე წერია; დენის ქურისთვის — 500 მმ). ან ზედა რიგი უნდა აიწიოს, ან ისეთი გამწოვი შეირჩეს, რომლის ინსტრუქციაც ნაკლებს უშვებს — დიზაინერთან და ავეჯის ოსტატთან დასაზუსტებელია.</li>
+        <li>ქვედა კარადები — თეთრი მქრქალი, სიღრმე 600 მმ, სახელურების გარეშე (ზედაპირის ქვეშ ჩაღრმავებული პროფილი). ზედაპირის თავი სუფთა იატაკიდან 900 მმ-ზეა, ფასადები 100-დან 845-მდე. მოდულები კუთხიდან, A.18-ით: გვერდითი ფიცარი 18, ვიწრო გამოსაწევი 201, ღუმელი და ქურა 600 (უჯრა 100–255, ღუმელი 255–845), სამი უჯრა 525 (100–485, 485–665, 665–845), ჭურჭლის სარეცხი 450, ნიჟარა 550 (ორი კარი), მაცივართან ბრტყელი ფასადი 150. ქურა 510 × 580 (კუთხიდან 232–812 მმ), ნიჟარა 450 × 500 (1,812–2,312 მმ): გეგმაზე 1,773-დან იწყება, მაგრამ ასე ჭურჭლის სარეცხის კარადაზე 2 სმ-ით გადავიდოდა, ამიტომ თავისი კარადის შიგნით 4 სმ-ით არის გადაწეული; წყალი და კანალიზაცია (A.14) ისევ მის ქვეშაა.</li>
+        <li>მაცივრის კარადა ნიშაშია, ქვედა კარადების ფერის (თეთრი მქრქალი) ფასადებით, 2,880-მდე: ცოკოლი 100, საყინულე 900-მდე, მაცივარი 2,150-მდე, ზემოთ კარადა (A.18). სვეტი A.18-ით 736 მმ სიგანისაა და 850 მმ სიღრმის: 30 მმ კარადების მხარეს ნიშის გარეთ დგას, ამიტომ მისი უკანა ნაწილი ნიშის კუთხეზე 30 მმ-ით ამოჭრილი მზადდება (ნიშა სუფთა კედლებს შორის 711 მმ-ია: ანაზომზე (A.8) წერია 741, მაგრამ ეს შელესვამდეა — ორივე კედელზე 15 მმ ბათქაში 30 მმ-ს აკლებს). ჩასაშენებელი მაცივარი 56 სმ-იან ნიშაზე შეირჩიოს. ვენტილაციისთვის ცოკოლში და ზემოთ ღიობი დატოვე.</li>
+        <li>ფართუკი — ფილა, სუფთა იატაკიდან 900-დან 1,500 მმ-მდე, მთელ სიგრძეზე. იგივე ფილა გვერდით კედელზე, ქურის მხარეს, 900 მმ-დან ჭერამდე (დიზაინერის შენიშვნა, A.3).</li>
+        <li>ნიჟარა ზედაპირის ქვეშაა ჩასმული; შემრევი — თითბრისფერი.</li>
+        <li>ამ კედლის უკან შახტია: წყლის და კანალიზაციის წერტილები დიზაინერის გეგმითაა (A.14, ნიჟარის კარადის უკან; იხ. ჩანართი „სანტექნიკა“). გამწოვის მილიც ახლოსაა.</li>
+        <li>ქურა შერეულია, როგორც სურათზე: 2 გაზის სანთურა მარჯვნივ და 2 ინდუქციური ზონა მარცხნივ. გაზის მიერთებაც სჭირდება და ცალკე ელექტროხაზიც.</li>
+        <li>როზეტები დიზაინერის გეგმით (A.11) ამ კედელზე: ორმაგი 750 მმ-ზე, ერთი 1,100 მმ-ზე და ერთი 650 მმ-ზე; მაცივრისთვის ერთი ნიშის უკანა კედელზე, 2,200 მმ-ზე. ზედაპირის შუქის ჩამრთველი ფართუკზე, 1,100 მმ-ზე.</li>
+        <li>LED ლენტი პროფილში ზედა კარადების ქვეშ, მთელ სიგრძეზე (2.5 მ); კვება კედლიდან 1,550 მმ-ზე (A.13).</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ---------- lighting ---------- -->
+  <section id="tab-light" class="hidden">
+    <div class="toolbar">
+      <span class="sub">ჭერის და განათების გეგმა ელექტრიკოსისთვის</span>
+      <span class="grow"></span>
+      <label class="sub"><input type="checkbox" id="socktoggle" checked> როზეტებიც</label>
+      <button class="btn" onclick="window.print()">ბეჭდვა / PDF</button>
+    </div>
+    <div class="draw"><div id="ldraw"></div>
+      <div class="legend">
+        <span><span class="code c">A</span> ჭერის სანათი ან ჩამოსაკიდი — ასო ჯგუფს აჩვენებს</span>
+        <span><svg viewBox="0 0 30 14"><rect x="1" y="1" width="28" height="12" rx="4" fill="none" stroke="var(--lamp)" stroke-width="1.5"/><circle cx="7" cy="7" r="2.6" fill="var(--lamp)"/><circle cx="23" cy="7" r="2.6" fill="var(--lamp)"/></svg>ორმაგი ჩასაშენებელი სანათი — ერთი კორპუსი, ორი ნათურა</span>
+        <span><svg viewBox="0 0 30 14"><line x1="3" y1="7" x2="27" y2="7" stroke="var(--lamp)" stroke-width="4" stroke-linecap="round"/></svg>ხაზოვანი ჩასაშენებელი სანათი</span>
+        <span><svg viewBox="0 0 30 14"><line x1="1" y1="7" x2="29" y2="7" stroke="var(--ink)" stroke-width="2.4"/><path d="M6,2V12M15,2V12M24,2V12" stroke="var(--lamp)" stroke-width="3" fill="none"/></svg>მაგნიტური ტრეკი</span>
+        <span><svg viewBox="0 0 30 14"><line x1="1" y1="12" x2="29" y2="12" stroke="var(--wall)" stroke-width="3"/><path d="M8,11 A7,7 0 0 1 22,11 Z" fill="var(--lamp)"/></svg>კედლის სანათი (რიცხვები — სიმაღლე იატაკიდან, სმ)</span>
+        <span><span class="code e">D</span> ფარული LED ლენტი</span>
+        <span><span class="code s">1</span> ჩამრთველი: ×3 — ღილაკები, ⇄ — გადამრთველი (ორი ან სამი ადგილიდან), რიცხვი — სიმაღლე სმ-ში, თუ 85 არ არის</span>
+        <span>⌓ როზეტი (რიცხვი — რამდენი ცალი)</span>
+        <span>◇ გაზის დეტექტორი, ელ. ფარი, ვენტილატორი</span>
+        <span><i style="background:color-mix(in srgb, var(--sw) 20%, transparent); border:1px dashed var(--sw)"></i>ფარდის ჯიბე ჭერში</span>
+        <span><i style="background:color-mix(in srgb, var(--led) 25%, transparent); border:1px solid var(--led)"></i>ჭერის ჯიბე ფარული შუქით; საწოლის თავთან — შუბლი</span>
+        <span><i style="background:color-mix(in srgb, var(--neg) 25%, transparent); border:1px dashed var(--neg)"></i>რიგელი</span>
+      </div>
+    </div>
+    <div class="two" style="margin-top:14px">
+      <div class="card"><h2>ჯგუფები — რა ერთად ინთება</h2><table id="gtable"></table></div>
+      <div class="card"><h2>ჩამრთველები</h2><table id="stable"></table>
+        <h3>სულ შესაძენი</h3><table id="ctable"></table></div>
+    </div>
+    <div class="card" style="margin-top:14px">
+      <h2>შენიშვნები ელექტრიკოსისთვის</h2>
+      <ul class="plain">
+        <li>ყველაფერი დიზაინერის საბოლოო ნახაზებიდანაა (IJ Design Studio, 10.2026): როზეტები A.11, ჩამრთველები A.12, განათება A.13, ჭერი A.15. ადგილზე, ელექტრიკოსთან ერთად მონიშნეთ.</li>
+        <li>სუფთა ჭერი 2.90 მ-ზეა. რიგელები მისაღებში, ჰოლში და საძინებლებში გადის; მისაღებში რიგელი დაღარულ, მომრგვალებულ ყუთშია (700 სიგანის). რიგელის ქვეშ დაახლ. 2.66 მ — ეს ჩვენი გაზომვაა, დიზაინერის ნახაზზე არ წერია. სანათი რიგელზე არ იდგმება.</li>
+        <li>ჭერში ჩაჭრილი ჯიბეები (A.15): ფარდებისთვის — სამივე ოთახში აივნის კედელთან; ფარული შუქისთვის — დივნის ნიშის თავზე, საძინებელ №3-ში მაგიდის კედელთან და სააბაზანოში საშხაპის თავზე; საძინებელ №4-ში საწოლის თავზე — შუბლი LED-ით შიგნით.</li>
+        <li>ყველა ნათურა თბილი თეთრი, 3000K, ფერის გადმოცემა CRI 90 ან მეტი — რომ მუხა და ფერადი კედლები სურათებივით გამოჩნდეს.</li>
+        <li>ორმაგი ჩასაშენებელი სანათი ერთი თეთრი მართკუთხა კორპუსია ორი მოძრავი ნათურით.</li>
+        <li>ტრეკი საძინებელ №4-ში — 2.5 მ, საწოლის ფეხებთან, სამი ხაზოვანი სანათით (შავი, მაგნიტური — როგორც სურათზე); კვების ბლოკი მისადგომ ადგილას.</li>
+        <li>ბრების სიმაღლე იატაკიდან (სანათის შუა): დივნის თავზე ორ-ორი, 1.20 და 1.90 მ; საწოლის თავთან 1.40 მ, თოკით ჩასართავი. აივნის ორი ბრის სიმაღლე ნახაზზე არ წერია — გეგმაზე 1.80 მ ჩვენი ვარაუდია.</li>
+        <li>სააბაზანოში და აივანზე სანათები IP44, საშხაპის თავზე — IP65.</li>
+        <li>LED ლენტები 24 ვოლტზე, ალუმინის პროფილში გამფანტავით. სადაც მიდის კვება, დიზაინერის გეგმაზეა (15 წერტილი, თავისი სიმაღლით); კვების ბლოკები მისადგომ ადგილას.</li>
+        <li>სიმაღლეები სუფთა იატაკიდან: ჩამრთველი 85 სმ, როზეტი 30 სმ, სადაც სხვა არ წერია (A.11–A.12); სხვა სიმაღლე გეგმაზე ჩამრთველის გვერდით და ცხრილშია.</li>
+        <li>საძინებელ №4-ში საწოლის თავის ფარული შუქი (J) სამი ადგილიდან ირთვება: კართან და საწოლის ორივე მხარეს — ორი გადამრთველი და ერთი შუალედური. აივნის ბრები (O) ორი ადგილიდან: მისაღებიდან და საძინებელი №4-დან.</li>
+        <li>ჰოლის კარადაში (01-A) სარეცხი და საშრობი ერთმანეთზე დგას, მარჯვენა (ფართო) განყოფილებაში — დიზაინერთან მარცხნივაა, ფარის გამო გადავიტანეთ; მათთვის ორმაგი როზეტი 35 სმ-ზე, მარცხენა განყოფილებაში, ფართან. ელექტროფარის ქვეშ მოდემის ყუთი ინტერნეტის წერტილით და ერთი როზეტით.</li>
+        <li>გაზის დეტექტორი მისაღების კედელზე, სამზარეულოსთან, 2.65 მ-ზე. ელექტროფარი ჰოლის კარადის (01-A) მარცხენა ნაწილშია, შესასვლელის კედელზე; სააბაზანოს ვენტილატორი შახტის კედელზეა და ნიჟარის შუქთან ერთად ირთვება (R). ფარის, მოდემის ყუთის და ვენტილატორის სიმაღლე ნახაზზე არ წერია.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ---------- plumbing ---------- -->
+  <section id="tab-plumb" class="hidden">
+    <div class="toolbar">
+      <span class="sub">წყლისა და კანალიზაციის წერტილები სანტექნიკოსისთვის: სად და რა სიმაღლეზე</span>
+      <span class="grow"></span>
+      <button class="btn" onclick="window.print()">ბეჭდვა / PDF</button>
+    </div>
+    <div class="card pnote">
+      <b>ყველა სიმაღლე სუფთა იატაკიდანაა</b>, ანუ დაგებული ფილიდან ან ლამინატიდან და არა დღევანდელი ბეტონიდან. სანამ სანტექნიკოსი დაიწყებს, ყველა კედელზე ერთ სიმაღლეზე დახაზეთ ხაზი, სუფთა იატაკიდან 1.00 მ-ზე, და ყველაფერი იმ ხაზიდან გაზომეთ.
+    </div>
+    <div class="draw"><div id="pdraw"></div>
+      <div class="legend">
+        <span><i class="pdot w"></i>წყალი</span>
+        <span><i class="pdot d"></i>კანალიზაცია</span>
+        <span><i class="pdot b"></i>წყალი და კანალიზაცია</span>
+        <span><i class="pdot h"></i>გათბობა</span>
+        <span>რიცხვი — წერტილის ნომერი ცხრილში; P1–P6 — დიზაინერის აღნიშვნა სააბაზანოში</span>
+      </div>
+    </div>
+    <div class="two" style="margin-top:14px">
+      <div class="card"><h2>სააბაზანო: სამხრეთის კედელი (A01, 2,458)</h2><p class="note" style="margin:0 0 8px">ისე, როგორც ჩანს კარიდან შესვლისას: საშხაპე (900) და ნიჟარა (1,558). მარცხნივ საშხაპის კუთხეა, მარჯვნივ შახტის კუთხე.</p><div class="draw" id="pelS"></div></div>
+      <div class="card"><h2>სააბაზანო: შახტის კედელი (A02, 1,586)</h2><p class="note" style="margin:0 0 8px">ისე, როგორც ჩანს ოთახიდან: ნიჟარის მხარე პირსახოცის საშრობით (786) და უნიტაზის ყუთი (800). მარცხნივ ნიჟარის კუთხეა, მარჯვნივ კარის მხარე.</p><div class="draw" id="pelW"></div></div>
+    </div>
+    <p class="note">ნახაზზე წერტილთან ორი რიცხვია სანტიმეტრებში: პირველი არის მანძილი მარცხენა კუთხიდან, მეორე სიმაღლე სუფთა იატაკიდან. ორივე დიზაინერის საბოლოო ნახაზებიდანაა (A.14 სანტექნიკა, A.16 სააბაზანოს კედლები, A.21 სააბაზანოს ავეჯი); სადაც ნახაზზე რიცხვი არ არის, ცხრილში ასე წერია. P1–P6 დიზაინერის აღნიშვნებია. ადგილზე, სანტექნიკოსთან ერთად მონიშნეთ.</p>
+    <div class="card" style="margin-top:14px"><h2>წერტილები</h2><div style="overflow-x:auto"><table id="ptable"></table></div></div>
+    <div class="card"><h2>კითხვები</h2><p class="note" style="margin:0">კითხვები ცალკე ფაილებშია, ნახაზის ნაწყვეტებით — საქაღალდე „კითხვები“: <a href="კითხვები/დიზაინერისთვის.pdf">დიზაინერისთვის</a>, <a href="კითხვები/დეველოპერისთვის.pdf">დეველოპერისთვის</a>, <a href="კითხვები/ხელოსნებისთვის.pdf">ხელოსნებისთვის</a>.</p></div>
+  </section>
+
+  <!-- ---------- stages ---------- -->
+  <section id="tab-stages" class="hidden">
+    <div class="toolbar">
+      <span class="sub">რემონტის თანმიმდევრობა — თეთრი კარკასიდან შესვლამდე, ბრიგადით</span>
+      <span class="grow"></span>
+      <label class="sub">დაწყება<input type="date" id="sstart" class="sdate"></label>
+      <button class="btn" onclick="window.print()">ბეჭდვა / PDF</button>
+    </div>
+    <div class="card">
+      <div id="stot"></div>
+      <details class="bhelp"><summary>როგორ იკითხება</summary>
+        <ul class="plain">
+          <li>ეტაპები იმ რიგითაა, რა რიგითაც ოსტატები შემოდიან. ეტაპს რომ დააჭერ, გაიხსნება: რა კეთდება, რა უნდა იყიდო ან შეუკვეთო და რა შეამოწმო, სანამ ეტაპს მიიღებ.</li>
+          <li>„ბოლო ვადა“ ნიშნავს, როდემდე უნდა იყიდო ან შეუკვეთო, რომ ნივთი ეტაპის დაწყებისთვის ბინაში იყოს. ყვითელი — ვადამდე ერთ კვირაზე ნაკლებია, წითელი — ვადა გავიდა.</li>
+          <li>ხანგრძლივობები ტიპურია: თბილისის სარემონტო კომპანიები 60 მ² ბინის სრულ რემონტზე 10–15 კვირას წერენ, მხოლოდ მოპირკეთებაზე 5–8 კვირას. აქ 76 მ²-ია, სააბაზანო ნულიდან კეთდება და ავეჯი შეკვეთით მზადდება, ამიტომ 14 სამუშაო კვირაა. ბრიგადასთან დააზუსტე.</li>
+          <li>ახალი წლისა და შობის ორი კვირა (1 და 7 იანვრის კვირები) სამუშაოდ არ ითვლება.</li>
+          <li>დაწყების დღეს რომ შეცვლი, ყველა თარიღი გადაითვლება. „მზადაა“ მონიშვნა და დაწყების დღე ამ კომპიუტერზე რჩება.</li>
+          <li>ბინის მდგომარეობა რემონტამდე (21 ოქტომბერი) ფოტოებით შენახულია ფოლდერში „ფოტოები“.</li>
+        </ul>
+      </details>
+    </div>
+    <div id="slist"></div>
+  </section>
+</div>
+<div id="lightbox" class="hidden"><img alt=""></div>
+
+<script src="bina-228-data.js"></script>
+<script>
+const A = window.APT, $ = id => document.getElementById(id);
+const fmt = n => n >= 1000 ? Math.floor(n / 1000) + ',' + String(Math.round(n) % 1000).padStart(3, '0') : String(Math.round(n));
+const money = n => Math.round(n).toLocaleString('en-US').replace(/,/g, ' ');
+
+/* ---------- tabs ---------- */
+const TABS = ['pics', 'style', 'kitchen', 'light', 'plumb', 'stages'];
+function setTab(t) {
+  if (!TABS.includes(t)) t = 'pics';
+  [...$('tabs').children].forEach(b => b.classList.toggle('on', b.dataset.tab === t));
+  for (const k of TABS) $('tab-' + k).classList.toggle('hidden', k !== t);
+  if (location.hash.slice(1) !== t) history.replaceState(null, '', '#' + t);
+}
+$('tabs').addEventListener('click', e => { const b = e.target.closest('button'); if (b) setTab(b.dataset.tab); });
+
+/* ---------- pictures ---------- */
+const PICS = [   // [room, [[file in designer/, caption], ...]]
+  ['ჰოლი', [
+    ['WhatsApp Image 2026-10-01 at 23.43.02.jpeg', 'შესასვლელიდან სარკისკენ'],
+    ['WhatsApp Image 2026-10-01 at 23.43.02 (1).jpeg', 'ჰოლიდან მისაღებისკენ'] ]],
+  ['მისაღები', [
+    ['WhatsApp Image 21026-10-09 at 12.11.56.jpeg', 'სამზარეულოდან აივნისკენ'],
+    ['WhatsApp Image 2026-10-01 at 23.43.02 (2).jpeg', 'დივნის კედელი'],
+    ['WhatsApp Image 2026-110-09 at 11.57.46.jpeg', 'ტელევიზორის კედელი'],
+    ['WhatsApp Image 2026-10-09 a1t 11.57.46.jpeg', 'ტელევიზორის კედელი, გვერდიდან'] ]],
+  ['სამზარეულო', [
+    ['WhatsApp Image 2026-10-09 at 11.57.46.jpeg', 'სამზარეულო მისაღებიდან'] ]],
+  ['საძინებელი №4', [
+    ['WhatsApp Image 2026-10-07 at 14.31.55.jpeg', 'ფანჯრიდან კარისკენ'],
+    ['WhatsApp Image 2026-10-07 at 14.31.55 (1).jpeg', 'კარიდან ფანჯრისკენ'],
+    ['WhatsApp Image 2026-10-07 at 14.31.56.jpeg', 'კარადა და წიგნის თარო'],
+    ['WhatsApp Image 2026-10-07 at 14.31.56 (1).jpeg', 'საწოლის თავი'] ]],
+  ['საძინებელი №3', [
+    ['WhatsApp Image 2026-10-08 at 20.45.42.jpeg', 'ფანჯრიდან კარისკენ'],
+    ['WhatsApp Image 2026-10ქ-08 at 20.45.42.jpeg', 'კარიდან ფანჯრისკენ'],
+    ['WhatsApp Image 2026-10-08 at 20.45.421.jpeg', 'სამუშაო მაგიდა'] ]],
+  ['სააბაზანო', [
+    ['WhatsApp Image 2026-10-06 at 20.04.27 (1).jpeg', 'კარიდან'],
+    ['WhatsApp Image 2026-10-07 at 14.32.08 (1).jpeg', 'საშხაპე და ნიჟარა'],
+    ['WhatsApp Image 2026-10-07 at 14.32.08.jpeg', 'უნიტაზი და კარი'],
+    ['WhatsApp Image 2026-10-07 at 14.32.08 (2).jpeg', 'ნიჟარა ახლოდან'],
+    ['WhatsApp Image 2026-10-06 at 20.04.27.jpeg', 'ზემოდან'] ]],
+];
+function gallery() {
+  $('gal').innerHTML = PICS.map(([room, pics]) => `<h2 class="pgh">${room}</h2><div class="pg">` + pics.map(([file, cap]) => {
+    const src = encodeURI('designer/' + file);
+    return `<figure data-src="${src}"><img src="${src}" alt="${room} — ${cap}" loading="lazy" onerror="this.parentNode.classList.add('hidden')"><figcaption>${cap}</figcaption></figure>`;
+  }).join('') + '</div>').join('');
+}
+document.addEventListener('click', e => {
+  const f = e.target.closest('figure[data-src]'), lb = $('lightbox');
+  if (f) { lb.firstElementChild.src = f.dataset.src; lb.classList.remove('hidden'); } else if (e.target.closest('#lightbox')) lb.classList.add('hidden');
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') $('lightbox').classList.add('hidden'); });
+gallery();
+
+/* ---------- kitchen: the wall as seen from the room (the fridge column in its recess on the left, the tiled end wall on the right) ---------- */
+(function () {
+  const K = A.kitchen, W = A.built.fridge.r[3], H = A.H, U = y => W - y;      // W: from the olive wall to the far face of the fridge recess (the living room's wall, y 3,235)
+  const R = (u0, u1, z0, z1, cls) => `<rect class="${cls}" x="${Math.min(u0, u1)}" y="${H - z1}" width="${Math.abs(u1 - u0)}" height="${z1 - z0}"/>`;
+  const T = (u, z, txt, cls = 'kt') => `<text class="${cls}" x="${u}" y="${H - z}">${txt}</text>`;
+  const dimH = (u0, u1, z, txt) => `<line class="dl" x1="${u0}" y1="${H - z}" x2="${u1}" y2="${H - z}"/><line class="dl" x1="${u0}" y1="${H - z - 40}" x2="${u0}" y2="${H - z + 40}"/><line class="dl" x1="${u1}" y1="${H - z - 40}" x2="${u1}" y2="${H - z + 40}"/><text class="dt" x="${(u0 + u1) / 2}" y="${H - z - 30}">${txt}</text>`;
+  const dimV = (u, z0, z1, txt) => `<line class="dl" x1="${u}" y1="${H - z0}" x2="${u}" y2="${H - z1}"/><line class="dl" x1="${u - 40}" y1="${H - z0}" x2="${u + 40}" y2="${H - z0}"/><line class="dl" x1="${u - 40}" y1="${H - z1}" x2="${u + 40}" y2="${H - z1}"/><text class="dt" transform="translate(${u - 30},${H - (z0 + z1) / 2}) rotate(-90)">${txt}</text>`;
+  const G = K.top - 15, t1 = K.top + K.slab, F = U(K.len);      // F — where the fridge recess ends and the run begins
+  let s = R(0, W, 0, H, 'kwall') + R(F, W, t1, K.wallFrom, 'ksplash');
+  // built-in fridge: the recess is one tall column of joinery — a plinth and three fronts up to the wall units' top (2,880, 20 under the ceiling)
+  s += R(0, F, 0, K.plinth, 'kfront') + R(0, F, K.plinth, 895, 'kfront') + R(0, F, 905, 2145, 'kfront') + R(0, F, 2155, K.wallTop, 'kfront');      // A.18: 900 and 2,150
+  s += T(F / 2, 1700, 'ჩაშენებული') + T(F / 2, 1610, 'მაცივარი') + T(F / 2, 1510, 'სვეტი ' + F, 'kts');
+  // base units
+  s += R(F, W, 0, K.plinth, 'kfront');
+  let y = 0, ov = [0, 0];      // ov — where the oven and the hob stand, for the hood over them
+  K.base.forEach(m => {
+    const a = U(y + m.w), b = U(y), mid = (a + b) / 2; y += m.w;
+    if (m.k === 'oven') ov = [a, b];
+    if (m.k === 'filler') { s += R(a, b, K.plinth, K.top, 'kfront'); return; }
+    if (m.k === 'drawers') s += R(a, b, K.plinth, 485, 'kfront') + R(a, b, 485, 665, 'kfront') + R(a, b, 665, G, 'kfront');
+    if (m.k === 'oven') s += R(a, b, K.plinth, 255, 'kfront') + R(a, b, 257, 780, 'kdark') + R(a, b, 782, G, 'kdark') + R(a + 60, b - 60, 725, 739, 'kstone') + R(a + 20, b - 20, t1, t1 + 14, 'kdark');
+    if (m.k === 'dish' || m.k === 'pull') s += R(a, b, K.plinth, G, 'kfront');
+    if (m.k === 'sink') s += R(a, mid, K.plinth, G, 'kfront') + R(mid, b, K.plinth, G, 'kfront') + R(a + 50, b - 50, 700, K.top, 'kdash') + `<path class="kwall" style="stroke-width:16" d="M${mid},${H - t1} V${H - 1230} H${mid + 170} V${H - 1180}"/>`;
+    if (m.w < 300) s += `<text class="kt" style="font-size:56px" transform="translate(${mid + 20},${H - 470}) rotate(-90)">${m.name}</text>`;
+    else if (m.k === 'oven') s += `<text class="kt" style="fill:#fff" x="${mid}" y="${H - 520}">ღუმელი</text>` + T(mid, 150, 'უჯრა', 'kts') + `<text class="kts" x="${mid}" y="${H - t1 - 60}">ქურა</text>`;
+    else { s += T(mid, 500, m.name.split(' ')[0]); if (m.name.includes(' ')) s += T(mid, 420, m.name.split(' ').slice(1).join(' '), 'kts'); }
+    s += dimH(a, b, -170, m.w);
+  });
+  // wall units: two rows of oak fronts with the same seams — the lower row and a second one up to 2,880 (A.18)
+  y = 0;
+  K.wall.forEach(m => {
+    const a = U(y + m.w), b = U(y), mid = (a + b) / 2; y += m.w;
+    if (m.k === 'filler') { s += R(a, b, K.wallFrom, K.wallTo, 'koak') + R(a, b, K.wallTo, K.wallTop, 'koak'); return; }
+    const n = m.doors || 1, dw = m.w / n;      // a unit of two doors keeps the seam of the five doors
+    for (let i = 0; i < n; i++) { const p = a + i * dw, q = p + dw; s += R(p, q, K.wallFrom - 20, K.wallTo, 'koak') + R(p, q, K.wallTo, K.wallTop, 'koak') + dimH(p, q, H + 130, dw); }
+    // the hood block sits in the unit's bottom over the hob, behind the doors
+    if (m.k === 'hood') s += R(ov[0] + 30, ov[1] - 30, K.wallFrom, K.wallFrom + 250, 'kdash') + R(ov[0] + 30, ov[1] - 30, K.wallFrom - 30, K.wallFrom - 20, 'kdark') + `<text class="kts khalo" x="${mid}" y="${H - (K.wallFrom + K.wallTo) / 2 - 50}">ორ კარს უკან</text>`;
+    s += `<text class="kt${n > 1 ? ' khalo' : ''}" style="font-size:56px" x="${mid}" y="${H - (K.wallFrom + K.wallTo) / 2 + 20}">${m.name}</text>`;
+  });
+  s += R(F, W - 12, G, K.top, 'kdark') + R(F, W, K.top, t1, 'kstone');
+  s += dimH(F, W, -390, fmt(K.len)) + dimH(0, F, -170, F);
+  s += dimV(-170, 0, t1, t1) + dimV(-170, t1, K.wallFrom, K.wallFrom - t1) + dimV(-170, K.wallFrom, K.wallTo, K.wallTo - K.wallFrom) + dimV(-170, K.wallTo, K.wallTop, K.wallTop - K.wallTo) + dimV(-400, 0, H, fmt(H));
+  // the end wall at the hob takes the same tile as the splashback, from the counter to the ceiling (A.3)
+  s += `<text class="kts" transform="translate(${W + 90},${H - (t1 + H) / 2}) rotate(-90)">გვერდით კედელზე ფილა ${fmt(t1)}-დან ჭერამდე</text>`;
+  $('kdraw').innerHTML = `<svg viewBox="-560 -290 4000 3800">${s}</svg>`;
+  $('khgap').textContent = K.wallFrom - t1;
+  const what = { pull: 'ერთი ვიწრო ფასადი, რომელიც მთლიანად გამოდის: ზეთი, სანელებლები, საცხობი ფირფიტები', drawers: '3 უჯრა: ქვაბები, თეფშები, დანა-ჩანგალი', oven: 'ქვემოთ უჯრა, ზემოთ ჩასაშენებელი ღუმელი, ზედაპირზე ქურა', dish: 'ჩასაშენებელი ჭურჭლის სარეცხი, ფასადი კარადის ფერის', sink: '2 კარი; შიგნით ქვემოდან ჩასმული ნიჟარა და ნაგვის ურნა' };
+  const upw = { 'გამწოვი': '2 კარი (505 + 505), ერთი კარადა: ძირში ჩასაშენებელი გამწოვი ქურის თავზე, გვერდებზე და ზემოთ თაროები სანელებლებისთვის', 'თეფშები': '1 კარი, 1 თარო', 'ჭიქები': '1 კარი, 1 თარო', 'საშრობი': '1 კარი, ჭურჭლის საშრობი ბადე' };
+  // base and wall modules have different widths now, so each side of the table carries its own
+  const base = K.base.filter(m => m.k !== 'filler').reverse(), wall = K.wall.filter(m => m.k !== 'filler').reverse();
+  const cell = (m, txt) => m ? `<td class="l">${m.w}</td><td class="l"><b>${m.name}</b><small>${txt[m.k] || txt[m.name] || ''}</small></td>` : '<td></td><td></td>';
+  let h = '<tr><th>№</th><th class="l">სიგანე</th><th class="l">ქვედა</th><th class="l">სიგანე</th><th class="l">ზედა</th></tr>';
+  h += `<tr><td>—</td><td class="l">${F}</td><td class="l" colspan="3">მაცივრის კარადა ნიშაში, ქვედა კარადების ფერის ფასადებით, ${fmt(K.wallTop)}-მდე (A.18: 736 სიგანის და 850 სიღრმის; უკანა ნაწილი ნიშის კუთხეზე 30 მმ-ით ამოჭრილი, ნიშა 711)</td></tr>`;
+  for (let i = 0; i < Math.max(base.length, wall.length); i++) h += `<tr><td>${i + 1}</td>${cell(base[i], what)}${cell(wall[i], upw)}</tr>`;
+  const dws = K.wall.filter(m => m.k !== 'filler').flatMap(m => Array(m.doors || 1).fill(m.w / (m.doors || 1)));
+  h += `<tr><td>—</td><td class="l"></td><td class="l" colspan="3">ზედა კარადები ორ რიგად, ერთი და იგივე ნაკერებით: ქვედა რიგი ${fmt(K.wallFrom)}-დან ${fmt(K.wallTo)}-მდე, ზედა რიგი ${fmt(K.wallTo)}-დან ${fmt(K.wallTop)}-მდე (${K.wallTop - K.wallTo}) — თითო რიგში ${dws.length} კარი, სიგანე ${[...new Set(dws)].sort((p, q) => q - p).join(' და ')}</td></tr>`;
+  h += `<tr><td>—</td><td class="l">18</td><td class="l" colspan="3">გვერდითი ფიცარი კედელთან, ქურის მხარეს (A.18)</td></tr>`;
+  h += `<tr><td>—</td><td class="l">150</td><td class="l" colspan="3">ბრტყელი ფასადი მაცივრის კარადასთან (A.18)</td></tr>`;
+  $('ktable').innerHTML = h;
+})();
+
+/* ---------- lighting plan ---------- */
+(function () {
+  const pts = p => p.map(q => q.join(',')).join(' ');
+  const roomAt = (x, y) => [...A.rooms, A.balcony].find(r => A.inPoly(r.poly, x, y));
+  const room = (x, y) => { const r = roomAt(x, y); return r ? r.id : null; };
+  const { spotGroup, pendGroup } = A.light;
+  const LED = A.led;   // [group, metres, [[x1, y1, x2, y2], ...], [where its letter stands]] — kept in the data file, where the take-off adds them up
+  // [letter, what, which switch] and the switches in words — from the data file, which the 3D model switches by too
+  const GROUPS = A.light.groups.map(([g, t, sw]) => [g, t, sw.length ? sw.join(' და ') : 'ადგილზე']), SW = A.light.switchText;
+  // furniture outlines, so each light can be placed against what it serves: [x1, y1, x2, y2] or a list of corners.
+  // Built-in joinery comes from the data file; loose furniture is typed from the designer's furniture plan (A.10)
+  const BI = k => A.built[k].r;
+  const FURN = [
+    [1800, 0, 2600, 1600], [1375, 160, 1875, 660], [1375, 915, 1875, 1415], [2526, 160, 3026, 660], [2526, 915, 3026, 1415],      // dining table 1,600 × 800 against the olive wall, four chairs
+    [[3747, 0], [6347, 0], [6347, 1000], [6197, 1000], [6197, 1500], [5347, 1500], [5347, 1000], [3747, 1000]], [3947, 1268, 4947, 1768],      // L sofa 2,600 × 1,500 (the plan gives no depth for its long part: 1,000 here), coffee table
+    BI('kbase'), BI('fridge'), BI('tv'), BI('vitrine'),                                                    // kitchen run, fridge column, TV console and display cabinet (02-B)
+    BI('niche'), BI('cab'), BI('hshelf'),                                                                  // hall: wardrobe 01-A, open shelf 01-B, the shelf under the mirror 01-C
+    [3826, 4095, 5726, 6195], [5726, 5895, 6226, 6195], BI('w4'), BI('tower'),                             // bedroom 4: bed 1,900 × 2,100, bedside, wardrobe 03-A with its open shelf
+    [3827, 7410, 4827, 9410], [5327, 7410, 6327, 9410], [4827, 9110, 5327, 9410], BI('desk'), BI('w3'),    // bedroom 3: two beds 1,000 × 2,000, bedside, desk 04-B, wardrobe 04-A
+    [1497, 7625, 2396, 9410], BI('vanity'), BI('wcbox'),                                                   // bathroom: shower, vanity 05-A, WC box
+  ];
+  const PK = { curtain: 'lpkc', light: 'lpkl', fascia: 'lpkf' };      // the ceiling plan's pockets (A.15): for curtains, for hidden light, and the lit fascia over the bed head
+  const [tx1, ty1, tx2, ty2] = A.track.line, trackLen = Math.hypot(tx2 - tx1, ty2 - ty1);
+  // a wall light or a switch is given just inside the room: find the wall it is on — [dx, dy, distance]
+  const toWall = (x, y) => { const r = roomAt(x, y); for (let d = 10; d <= 400; d += 10) for (const [dx, dy] of [[0, -1], [0, 1], [-1, 0], [1, 0]]) if (!r || !A.inPoly(r.poly, x + dx * d, y + dy * d)) return [dx, dy, d - 5]; return [0, -1, 0]; };
+  // switches the designer puts at one spot (two boxes one over the other) are drawn side by side
+  const SWP = A.switches.map(([x, y]) => [x, y]);
+  SWP.forEach((p, i) => SWP.slice(0, i).forEach(q => {
+    const dx = p[0] - q[0], dy = p[1] - q[1], d = Math.hypot(dx, dy), push = (180 - d) / 2;
+    if (d >= 180) return;
+    if (Math.abs(dx) >= Math.abs(dy)) { const sg = dx >= 0 ? 1 : -1; p[0] += sg * push; q[0] -= sg * push; } else { const sg = dy >= 0 ? 1 : -1; p[1] += sg * push; q[1] -= sg * push; }
+  }));
+  const keysTxt = k => k === 'rev' ? 'გადამრთველი' : k + ' ღილაკი';
+  function draw(socks) {
+    let s = '';
+    for (const r of [...A.rooms, A.balcony, A.closet]) s += `<polygon class="lf" points="${pts(r.poly)}"/>`;
+    for (const w of A.walls) s += `<rect class="${w.op >= 0 ? 'lo' : 'lw'}" x="${w.x1}" y="${w.y1}" width="${w.x2 - w.x1}" height="${w.y2 - w.y1}"/>`;
+    for (const { r: [x1, y1, x2, y2], k } of A.pockets) s += `<rect class="${PK[k]}" x="${x1}" y="${y1}" width="${x2 - x1}" height="${y2 - y1}"/>`;
+    for (const { r: [x1, y1, x2, y2] } of A.beams) s += `<rect class="lbeam" x="${x1}" y="${y1}" width="${x2 - x1}" height="${y2 - y1}"/>`;
+    for (const f of FURN) s += Array.isArray(f[0]) ? `<polygon class="lfu" points="${pts(f)}"/>` : `<rect class="lfu" x="${f[0]}" y="${f[1]}" width="${f[2] - f[0]}" height="${f[3] - f[1]}"/>`;
+    // a beam's name stands along it where there is room; the narrow ones along the balcony wall get one name outside
+    for (const { r: [x1, y1, x2, y2], flute } of A.beams) {
+      const w = x2 - x1, h = y2 - y1, cx = (x1 + x2) / 2, cy = (y1 + y2) / 2;
+      if (Math.min(w, h) < 280 || Math.max(w, h) < 1500) continue;
+      const t = flute ? 'რიგელი დაღარულ ყუთში' : 'რიგელი';
+      s += h > w ? `<text class="lt m" transform="translate(${cx - 35},${cy}) rotate(90)">${t}</text>` : `<text class="lt m" x="${cx}" y="${cy + 35}">${t}</text>`;
+    }
+    s += `<text class="lt m" transform="translate(7330,7900) rotate(90)">აივნის კედლის რიგელი — ქვეშ ${A.Z / 1000} მ</text>`;
+    for (const [name, x, y] of [['მისაღები', 5100, 2050], ['ჰოლი', 900, 4650], ['საძინებელი №4', 4800, 4750], ['საძინებელი №3', 5100, 7650], ['აივანი', 7760, 5200]]) s += `<text class="lroom" x="${x}" y="${y}"${name === 'აივანი' ? ` transform="rotate(-90 ${x} ${y})"` : ''}>${name}</text>`;
+    for (const [g, , segs, [lx, ly]] of LED) {
+      for (const [x1, y1, x2, y2] of segs) s += `<line class="lled" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"/>`;
+      s += `<text class="lt e" x="${lx}" y="${ly}">${g}</text>`;
+    }
+    for (const [x1, y1, x2, y2] of A.linear) s += `<line class="llin" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"/><text class="lt c" x="${(x1 + x2) / 2 - 130}" y="${(y1 + y2) / 2 + 40}">P</text>`;
+    s += `<line class="ltrack" x1="${tx1}" y1="${ty1}" x2="${tx2}" y2="${ty2}"/>`;
+    for (let i = 0; i < A.track.lamps; i++) {
+      const f = (i + 0.5) / A.track.lamps, px = tx1 + (tx2 - tx1) * f, py = ty1 + (ty2 - ty1) * f, nx = -(ty2 - ty1) / trackLen * 75, ny = (tx2 - tx1) / trackLen * 75;
+      s += `<line class="ltick" x1="${px - nx}" y1="${py - ny}" x2="${px + nx}" y2="${py + ny}"/>`;
+    }
+    s += `<text class="lt c" x="${(tx1 + tx2) / 2}" y="${(ty1 + ty2) / 2 - 115}">T</text>`;
+    for (const p of A.spots) {
+      const [x, y, n] = p, g = spotGroup(p);
+      if (n === 2) s += `<rect class="ltwin" x="${x - 180}" y="${y - 85}" width="360" height="170" rx="55"/><circle class="ltw" cx="${x - 122}" cy="${y}" r="34"/><circle class="ltw" cx="${x + 122}" cy="${y}" r="34"/>`;
+      else s += `<circle class="lspot" cx="${x}" cy="${y}" r="105"/>`;
+      s += `<text class="lt c" x="${x}" y="${y + 40}">${g}</text>`;
+    }
+    A.pendants.forEach(([x, y], i) => { const g = pendGroup(i); s += `<circle class="lpen" cx="${x}" cy="${y}" r="62"/>` + (i % 2 ? '' : `<text class="lt c" x="${x - (g === 'C' ? 190 : 170)}" y="${y + (g === 'C' ? 200 : 100)}">${g}</text>`); });
+    for (const [x, y, n, g, hs = []] of A.wallLights) {   // drawn in the thickness of the wall, so it stays clear of the LED run along the same wall; the heights of the lamps' middles in cm after the letter
+      const [dx, dy, d] = toWall(x, y), wx = x + dx * d, wy = y + dy * d, turn = dy < 0 ? 0 : dy > 0 ? 180 : dx < 0 ? -90 : 90;
+      const lx = dy ? wx + 95 : wx + dx * 75, ly = dy < 0 ? wy - 25 : dy > 0 ? wy + 105 : wy + 175;
+      s += `<path class="lwl" d="M-75,0 A75,75 0 0 1 75,0 Z" transform="translate(${wx},${wy}) rotate(${turn})"/><text class="lt c h" x="${lx}" y="${ly}"${dy ? ' style="text-anchor:start"' : ''}>${g}${n > 1 ? `<tspan style="font-size:82px" dx="12">${n}</tspan>` : ''}<tspan class="lhs" dx="22">${hs.map(z => z / 10).join(' / ')}</tspan></text>`;
+    }
+    if (socks) for (const [x, y, n, note] of A.sockets) {
+      // a note goes under the socket (over it at a bottom wall) and starts at the wall it would otherwise run into; a bare count stands beside
+      const txt = ((n > 1 ? n : '') + (note ? ' ' + note : '')).trim(), below = !!roomAt(x, y + 200), left = !!roomAt(x - 250, y), right = !!roomAt(x + 250, y);
+      let tx = x, ty = below ? y + 150 : y - 75, anchor = '';
+      if (note) { if (!left) { tx = x - 70; anchor = 'start'; } else if (!right) { tx = x + 70; anchor = 'end'; } }
+      else if (below) { tx = right ? x + 125 : x - 125; ty = y + 45; }
+      s += `<path class="lsock" d="M${x - 70},${y + 45} A70,70 0 0 1 ${x + 70},${y + 45} Z"/>` + (txt ? `<text class="lt m" style="font-size:88px${anchor ? ';text-anchor:' + anchor : ''}" x="${tx}" y="${ty}">${txt}</text>` : '');
+    }
+    // other points on the electrical plans: gas detector, the electric panel, the bathroom fan
+    for (const [x, y, what, z] of A.points) s += `<path class="lpt" d="M${x},${y - 75} L${x + 75},${y} L${x},${y + 75} L${x - 75},${y} Z"/><text class="lt m" style="font-size:84px;text-anchor:start" x="${x + 110}" y="${y + 30}">${what}${z ? ', ' + z / 10 + ' სმ' : ''}</text>`;
+    // a switch: its number; beside it, into the room, ×keys or ⇄ for a two-way one, and its height in cm where it is not the usual 85
+    A.switches.forEach(([x0, y0, , k, z], i) => {
+      const [x, y] = SWP[i], [dx, dy] = toWall(x0, y0), tag = [k === 'rev' ? '⇄' : k > 1 ? '×' + k : '', z ? z / 10 : ''].filter(Boolean).join(' ');
+      s += `<rect class="lsw" x="${x - 85}" y="${y - 85}" width="170" height="170" rx="24"/><text class="lt w" x="${x}" y="${y + 40}">${i + 1}</text>`;
+      if (tag) s += `<text class="lt s" style="text-anchor:${dx < 0 ? 'start' : dx > 0 ? 'end' : 'middle'}" x="${dx ? x - dx * 115 : x}" y="${dy ? y - dy * 175 + 30 : y + 32}">${tag}</text>`;
+    });
+    $('ldraw').innerHTML = `<svg viewBox="-900 -500 9700 10300">${s}</svg>`;
+  }
+  draw(true);
+  $('socktoggle').addEventListener('change', e => draw(e.target.checked));
+  const fit = (g, n) => A.spots.filter(p => p[2] === n && (!g || spotGroup(p) === g)).length, pend = g => A.pendants.filter((p, i) => pendGroup(i) === g).length;
+  const wl = g => A.wallLights.filter(w => !g || w[3] === g).reduce((a, w) => a + w[2], 0), len = g => LED.filter(l => l[0] === g).reduce((a, l) => a + l[1], 0);
+  const mt = v => { const t = String(+v.toFixed(2)); return t.includes('.') ? t : t + '.0'; };   // metres: 7.0, 2.95, 44.05
+  const lamps = g => fit(g, 2) + fit(g, 1) + pend(g) + wl(g) + (g === 'P' ? A.linear.length : 0) + (g === 'T' ? A.track.lamps : 0);
+  const what = g => { const l = len(g), bits = [];
+    if (fit(g, 2)) bits.push(fit(g, 2) + ' ორმაგი სანათი'); if (fit(g, 1)) bits.push(fit(g, 1) + ' წერტილოვანი სანათი');
+    if (g === 'P') bits.push(A.linear.length + ' ხაზოვანი სანათი, ' + mt(Math.hypot(A.linear[0][2] - A.linear[0][0], A.linear[0][3] - A.linear[0][1]) / 1000) + ' მ'); if (g === 'T') bits.push(`ტრეკი ${mt(trackLen / 1000)} მ, ${A.track.lamps} სანათით`);
+    if (pend(g)) bits.push(pend(g) + ' ჩამოსაკიდი'); if (wl(g)) bits.push(wl(g) + ' ბრა');
+    if (l) bits.push('LED ლენტი ' + mt(l) + ' მ'); return bits.join(' + '); };
+  $('gtable').innerHTML = '<tr><th>ჯგუფი</th><th class="l">სად</th><th class="l">რა</th><th>ჩამრთველი</th></tr>' +
+    GROUPS.map(([g, name, sw]) => `<tr><td><span class="code ${lamps(g) ? 'c' : 'e'}">${g}</span></td><td class="l">${name}</td><td class="l">${what(g)}</td><td>${sw}</td></tr>`).join('');
+  $('stable').innerHTML = '<tr><th>№</th><th class="l">სად და რას რთავს</th><th class="l">ტიპი</th><th>სიმაღლე</th></tr>' +
+    SW.map((t, i) => { const [, , , k, z] = A.switches[i] || []; return `<tr><td><span class="code s">${i + 1}</span></td><td class="l">${t}</td><td class="l">${k == null ? '' : keysTxt(k)}</td><td>${(z || 850) / 10} სმ</td></tr>`; }).join('');
+  const total = LED.reduce((a, l) => a + l[1], 0), nSock = A.sockets.reduce((a, q) => a + q[2], 0), nKeys = A.switches.filter(q => q[3] !== 'rev').length, nRev = A.switches.length - nKeys;
+  $('ctable').innerHTML = [['ორმაგი ჩასაშენებელი ჭერის სანათი', fit('', 2) + ' ცალი'], ['წერტილოვანი ჩასაშენებელი სანათი', fit('', 1) + ' ცალი'], ['ხაზოვანი ჩასაშენებელი სანათი სამზარეულოში', A.linear.length + ' ცალი'],
+    ['ჩამოსაკიდი სანათი', A.pendants.length + ' ცალი'], [`კედლის სანათი (დივნის თავზე ${wl('F')}, საწოლთან ${wl('Z')}, აივანზე ${wl('O')})`, wl('') + ' ცალი'], ['მაგნიტური ტრეკი სანათებით', `${mt(trackLen / 1000)} მ, ${A.track.lamps} სანათი`],
+    ['LED ლენტი პროფილით', mt(total) + ' მ'], ['ჩამრთველი', `${A.switches.length} ცალი: ${nKeys} ღილაკიანი, ${nRev} გადამრთველი`], ['როზეტი', nSock + ' ცალი']]
+    .map(([a, b]) => `<tr><td>${a}</td><td>${b}</td></tr>`).join('');
+})();
+
+/* ---------- plumbing: every water and drain point, on the plan, on the two busy bathroom walls, and as a list ---------- */
+(function () {
+  // the designer's plumbing plan (A.14), bathroom walls (A.16) and bathroom furniture (A.21); where they give no figure, the chosen products' own installation sheets
+  const WCW = 1045, WCD = 230;      // Geberit Duofix 112 cm, manual 966.027.00.0: cold water R 1/2" at the frame's top middle, the bowl's fixing axis — the designer gives neither height
+  // kind: w water, d drain, b both, h heating, c air-conditioner condensate; p: the designer's own label (P1–P6 in the bathroom); at: where its mark stands on the plan (mm)
+  const PL = [
+    { kind: 'w', at: [250, 1880], room: 'სამზარეულო', what: 'ნიჟარა და ჭურჭლის სარეცხი: წყალი', svc: 'ცივი (ნახაზზე „50 მმ“), ცივი, ცხელი',
+      where: 'შახტის კედელი, ნიჟარის კარადის უკან. მაცივრის მხრის კედლიდან: ცივი „50 მმ“ 145.1 სმ, ცივი 130.1 სმ, ცხელი 110.1 სმ (ქურის მხრის კედლიდან 178.4, 193.4 და 213.4 სმ)', z: 'სამივე 50 სმ',
+      note: 'ნიჟარა 45 × 50, ქურის მხრის კედლიდან 177.3–227.3 სმ; ჭურჭლის სარეცხი მის გვერდით, 127.2–172.2 სმ.' },
+    { kind: 'd', at: [560, 2120], room: 'სამზარეულო', what: 'ნიჟარა და ჭურჭლის სარეცხი: კანალიზაცია', svc: 'კანალიზაცია, ორი მიმღები',
+      where: 'შახტის კედელი, ნიჟარის კარადის უკან. მაცივრის მხრის კედლიდან 135 და 120 სმ (ქურის მხრის კედლიდან 188.5 და 203.5 სმ)', z: 'ორივე 40 სმ',
+      note: 'კარადის წინა ქვედა ნაწილში ნაგვის ურნაა, ამიტომ მილები კედელთან.' },
+    { kind: 'b', at: [430, 3700], room: 'ჰოლი', what: 'სარეცხი მანქანა ჰოლის კარადაში (01-A)', svc: 'ცივი, კანალიზაცია',
+      where: 'კარადის ქვედა მარჯვენა (ფართო) ნაწილი, სარეცხი მანქანის უკან (ზედ საშრობი დგას). გეგმაზე (A.14, 31.10) კანალიზაცია შესასვლელის მხრის კედლიდან 75 სმ-ზე, ცივი წყალი მის გვერდით, დაახლ. 10 სმ-ით შორს და მისაღების კედელთან ახლოს', z: 'კანალიზაცია (50 მმ) და ცივი წყალი — ორივე 25 სმ',
+      note: 'ელექტროფარი მეორე, ვიწრო განყოფილების გვერდით კედელზეა (150 სმ-ზე) — მანქანები ამიტომ მარჯვნივ გადავიტანეთ. Samsung-ის ინსტრუქციით შლანგის ბოლო 60–90 სმ სიმაღლეზე (იხ. „კითხვები / ხელოსნებისთვის“). საშრობის წყალიც აქ ჩაუშვით (მისი შლანგი 2 მ-ია).' },
+    { kind: 'b', p: 'P1', at: [976, 9250], room: 'სააბაზანო', what: 'ხელსაბანი: კედელში ჩასაშენებელი შემრევი', svc: 'ცივი, ცხელი, კანალიზაცია',
+      where: 'სამხრეთის კედელი (A01), ნიჟარის კარადის თავზე. შემრევის ცენტრი საშხაპის კუთხიდან 142 სმ (შახტის კუთხიდან 103.8); ცივი 10 სმ-ით შახტისკენ, ცხელი 10 სმ-ით საშხაპისკენ', z: 'ცივი და ცხელი 50 სმ, კანალიზაცია 40 სმ; შემრევის სიმაღლე ნახაზზე არ წერია',
+      note: 'დიზაინერის შენიშვნა: შემრევის ცენტრად ითვლება წყლის ცხვირი და არა სახელური. ქვის ზედაპირი 85 სმ-ზეა.' },
+    { kind: 'w', p: 'P2', at: [1850, 8950], room: 'სააბაზანო', what: 'შხაპი: ჩასაშენებელი სისტემა, ზედა თავი 30 სმ, ხელის შხაპი', svc: 'ცივი, ცხელი',
+      where: 'სამხრეთის კედელი (A01), საშხაპეში. შემრევის ცენტრი საშხაპის კუთხიდან 45 სმ; ცხელი 35 სმ-ზე, ცივი 55 სმ-ზე', z: '110 სმ',
+      note: 'ზედა თავი გეგმაზე კედლიდან 39 სმ-ზე, შემრევის ღერძზე; მისი სიმაღლე ნახაზზე არ წერია (იხ. „კითხვები / დიზაინერისთვის“). თაროს ნიშაში (21 × 70, კუთხიდან 10–31 სმ, სიმაღლე 85–155 სმ) მილი არ გაატაროთ.' },
+    { kind: 'w', p: 'P3', at: [300, 8540], room: 'სააბაზანო', what: 'ჩასაშენებელი ჰიგიენური შხაპი', svc: 'ცივი, ცხელი',
+      where: 'შახტის კედელი (A02), უნიტაზის ყუთის წინა მხარე, ნიჟარის მხარეს. ნიჟარის კუთხიდან: ცივი 101.7 სმ, ცხელი 81.7 სმ', z: '55 სმ',
+      note: 'ცხელი წერტილი ყუთის კიდიდან 3 სმ-ზეა (იხ. „კითხვები / ხელოსნებისთვის“).' },
+    { kind: 'b', p: 'P4', at: [300, 8080], room: 'სააბაზანო', what: 'შეკიდული უნიტაზი, ჩასაშენებელი ჩარჩო (Geberit Duofix)', svc: 'ცივი (ავზში), კანალიზაცია 100 მმ',
+      where: 'შახტის კედელი (A02), ყუთში (80 სმ სიგანის, 15 სმ სიღრმის). უნიტაზის ცენტრი ნიჟარის კუთხიდან 118.6 სმ, კარის მხრის კუთხიდან 40 სმ; ცივი წყალი გეგმაზე ცენტრიდან 14.5 სმ კარისკენ',
+      z: 'უნიტაზის ზედაპირი სუფთა იატაკიდან 42 სმ (დიზაინერი); ცივი წყალი 104.5 სმ და უნიტაზის ღერძი 23 სმ — Geberit-ის ინსტრუქციით, ნახაზზე არ წერია',
+      note: 'Geberit-ის ინსტრუქციით (966.027.00.0): წყალი R 1/2", ღილაკის შუა დაახლ. 100 სმ. ყუთის თავზე 125 სმ-დან ჭერამდე დაღარული კარადაა (05-B).' },
+    { kind: 'd', p: 'P5', at: [400, 9250], room: 'სააბაზანო', what: 'სტანდარტული ტრაპი იატაკში', svc: 'კანალიზაცია',
+      where: 'ნიჟარის კარადის ქვეშ: შახტის კედლიდან 33.8 სმ, სამხრეთის კედლიდან 18.6 სმ', z: 'იატაკში',
+      note: 'იატაკი ტრაპისკენ დახრით.' },
+    { kind: 'd', p: 'P6', at: [2200, 9270], room: 'სააბაზანო', what: 'დეკორატიული ხაზოვანი ტრაპი', svc: 'კანალიზაცია',
+      where: 'სამხრეთის კედელთან, საშხაპეში, კუთხიდან დაახლ. 2–70 სმ', z: 'იატაკში',
+      note: 'საშხაპის იატაკი ტრაპისკენ 1–2% დახრით. ტრაპის სიმაღლე იატაკში — იხ. „კითხვები / ხელოსნებისთვის“.' },
+    { kind: 'h', at: [100, 8900], room: 'სააბაზანო', what: 'პირსახოცის საშრობი', svc: 'გათბობა',
+      where: 'შახტის კედელი (A02), ნიჟარის კარადის თავზე, ნიჟარის კუთხიდან 10–56 სმ', z: 'მიერთება 120 სმ',
+      note: 'მიერთების ზუსტი ადგილი საშრობის მოდელით. დეველოპერის მილები (110 სმ-ზე) სხვა კედელზეა — ბავშვების ოთახის მხარეს, კართან ახლოს; სააბაზანოს მილები ისედაც თავიდან ეწყობა.' },
+    { kind: 'h', at: [6790, 1150], room: 'მისაღები', what: 'რადიატორი, სექციური, 100 სმ სიგრძის, 60 სმ სიმაღლის', svc: 'გათბობა',
+      where: 'აივნის კედელი, დივნის კედლიდან 37–137 სმ', z: 'რადიატორი 60 სმ სიმაღლის; ქვედა კიდე ნახაზზე არ წერია',
+      note: 'დეველოპერის ნახაზზე (თეთრი კარკასი) მილები ამავე კედლის კუთხეშია, დივნის კედელთან — რადიატორი თითქმის ადგილზეა, მილი 0.3–1 მ-ით გაგრძელდება.' },
+    { kind: 'h', at: [6790, 5419], room: 'საძინებელი №4', what: 'რადიატორი, ვერტიკალური, 40 სმ სიგანის, 180 სმ სიმაღლის', svc: 'გათბობა',
+      where: 'აივნის კედელი, მინის კარის გვერდით (კარიდან 8 სმ), საწოლის კედლის მხარეს', z: 'რადიატორი 180 სმ სიმაღლის',
+      note: 'დეველოპერის ნახაზზე მილები აივნის კარის მეორე მხარესაა — კუთხეში, მისაღების კედელთან, აივნის კედლიდან 35 სმ-ზე. რადიატორი დაახლ. 2 მ-ით გადადის: მილები მოჭიმვაში ან კედელში უნდა გაგრძელდეს.' },
+    { kind: 'h', at: [6790, 7499], room: 'საძინებელი №3', what: 'რადიატორი, სექციური, 80 სმ სიგრძის, 60 სმ სიმაღლის', svc: 'გათბობა',
+      where: 'ფანჯრის კედელი, ფანჯრის გვერდით (ფანჯრიდან 7 სმ), მაგიდის მხარეს', z: 'რადიატორი 60 სმ სიმაღლის; ქვედა კიდე ნახაზზე არ წერია',
+      note: 'დეველოპერის ნახაზზე მილები სვეტის გვერდითაა (საძინებელ №4-ის მხარეს) — რადიატორი დაახლ. 0.7 მ-ით გადადის ფანჯრისკენ.' },
+    { kind: 'h', at: [560, 6560], room: 'ჰოლი', what: 'რადიატორი, სექციური, 60 სმ სიგრძის, 60 სმ სიმაღლის', svc: 'გათბობა',
+      where: 'შახტის კედელი ჰოლის ბოლოს, სააბაზანოს კედლიდან 64–124 სმ', z: 'რადიატორი 60 სმ სიმაღლის; ქვედა კიდე ნახაზზე არ წერია',
+      note: 'დეველოპერს ჰოლში რადიატორის მილები არ მოუყვანია — ახალი მილი კოლექტორიდან უნდა გაიყვანოს. კოლექტორის ადგილი ნახაზზე არ ჩანს: ადგილზე ნახეთ.' },
+  ];
+  let k = 0; PL.forEach(p => { p.n = p.p || String(++k); });      // the bathroom keeps the designer's P1–P6, everything else is numbered
+  const KIND = { w: 'pw', d: 'pd', h: 'ph', c: 'pc' };
+  const mark = (x, y, k, n, r = 190) => k === 'b'
+    ? `<g><path class="pw pmark" d="M${x},${y - r} A${r},${r} 0 0 0 ${x},${y + r} Z"/><path class="pd pmark" d="M${x},${y - r} A${r},${r} 0 0 1 ${x},${y + r} Z"/><text class="pnum" x="${x}" y="${y + 52}">${n}</text></g>`
+    : `<g><circle class="${KIND[k]} pmark" cx="${x}" cy="${y}" r="${r}"/><text class="pnum" x="${x}" y="${y + 52}">${n}</text></g>`;
+  const pts = p => p.map(q => q.join(',')).join(' ');
+
+  // the plan
+  const SHOWER = [1497, A.rooms.find(r => r.id === 'wc').poly[0][1], 2396, 9410];      // the shower zone: glass on the line x 1,497 to the bathroom's far wall (A.10, A.16)
+  let s = '';
+  for (const r of [...A.rooms, A.balcony, A.closet]) s += `<polygon class="lf" points="${pts(r.poly)}"/>`;
+  for (const w of A.walls) s += `<rect class="${w.op >= 0 ? 'lo' : 'lw'}" x="${w.x1}" y="${w.y1}" width="${w.x2 - w.x1}" height="${w.y2 - w.y1}"/>`;
+  for (const [x1, y1, x2, y2] of [...['kbase', 'niche', 'wcbox', 'vanity'].map(k => A.built[k].r), SHOWER]) s += `<rect class="lfu" x="${x1}" y="${y1}" width="${x2 - x1}" height="${y2 - y1}"/>`;
+  for (const [name, x, y] of [['მისაღები', 4700, 2150], ['ჰოლი', 900, 4650], ['საძინებელი №4', 5000, 4700], ['საძინებელი №3', 4900, 7900], ['სააბაზანო', 1000, 7900], ['აივანი', 7760, 5200]]) s += `<text class="lroom" x="${x}" y="${y}"${name === 'აივანი' ? ` transform="rotate(-90 ${x} ${y})"` : ''}>${name}</text>`;
+  PL.forEach(p => { s += mark(p.at[0], p.at[1], p.kind, p.n); });
+  $('pdraw').innerHTML = `<svg viewBox="-900 -500 9700 10300">${s}</svg>`;
+
+  // a wall seen from the room: u runs from the left corner, z up from the finished floor (mm); a point's label is given in full, or '' for none
+  function wall(W, items, points) {
+    const H = A.H, Y = z => H - z;
+    let e = `<rect class="ewall" x="0" y="0" width="${W}" height="${H}"/>`;
+    for (const [cls, u1, u2, z1, z2, t] of items) {
+      if (cls === 'line') e += `<line class="eglass" x1="${u1}" y1="${Y(z1)}" x2="${u1}" y2="${Y(z2)}"/>`;
+      else if (cls === 'drain') e += `<line class="edrain" x1="${u1}" y1="${Y(20)}" x2="${u2}" y2="${Y(20)}"/>`;
+      else e += `<rect class="${cls}" x="${u1}" y="${Y(z2)}" width="${u2 - u1}" height="${z2 - z1}"/>`;
+      if (t) e += `<text class="elab" x="${(u1 + u2) / 2}" y="${Y(z2) + 80}" text-anchor="middle">${t}</text>`;
+    }
+    for (const [u, z, k, side, label] of points) {
+      e += `<circle class="${KIND[k]} pmark" cx="${u}" cy="${Y(z)}" r="38"/>`;
+      if (label) e += `<text class="ept" x="${u + (side < 0 ? -60 : 60)}" y="${Y(z) + 22}" text-anchor="${side < 0 ? 'end' : 'start'}">${label}</text>`;
+    }
+    e += `<line x1="-60" y1="${Y(1000)}" x2="${W + 60}" y2="${Y(1000)}" stroke="var(--lamp)" stroke-width="6" stroke-dasharray="20 18"/><text class="elab" x="${W + 70}" y="${Y(1000) + 20}" fill="var(--lamp)">1.00</text>`;
+    return `<svg viewBox="-120 -120 ${W + 420} ${H + 240}">${e}</svg>`;
+  }
+  const V = A.built.vanity.r, B = A.built.wcbox.r;      // the vanity (05-A) and the WC box with the fluted cabinet over it (05-B)
+  // south wall (A01, 2,458 = the shower's 900 + 1,558), seen from the door: left = the shower corner (x 2,396), right = the shaft corner (x −62)
+  const uS = x => 2396 - x;
+  $('pelS').innerHTML = wall(uS(-62), [
+    ['ething', uS(V[2]), uS(V[0]), 350, 850, 'ნიჟარის კარადა'], ['edash', uS(V[2]), uS(V[0]), 1200, 2400, 'სარკე 150 × 120'],
+    ['ething', uS(2296), uS(2086), 850, 1550, 'ნიშა'], ['line', uS(SHOWER[0]), 0, 0, 2200], ['drain', uS(2380), uS(1700), 0, 0],
+  ], [[uS(2046), 1100, 'w', 1, ''], [uS(1846), 1100, 'w', 1, 'P2: 35 და 55 / 110'],
+      [uS(1076), 500, 'w', 1, ''], [uS(876), 500, 'w', 1, 'P1: 132 და 152 / 50'], [uS(976), 400, 'd', 1, 'P1: 142 / 40'],
+      [uS(2040), 60, 'd', 1, 'P6: 2–70'], [uS(276), 60, 'd', -1, 'P5: იატაკში, კედლიდან 19']]);
+  // shaft wall (A02, 1,586 = 786 + the 800 WC box), seen from the room: left = the vanity corner (y 9,410), right = the door side (y 7,824)
+  const uW = y => 9410 - y, wc = (B[1] + B[3]) / 2;      // the bowl stands in the box's middle (y 8,224)
+  $('pelW').innerHTML = wall(uW(B[1]), [
+    ['ething', uW(B[3]), uW(B[1]), 0, 1250, 'ყუთი'], ['edash', uW(B[3]) + 30, uW(B[1]) - 30, 1250, A.H - 20, 'კარადა 05-B'], ['edash', uW(wc + 250), uW(wc - 250), 0, 1120, 'ჩარჩო'],
+    ['ething', uW(wc + 123), uW(wc - 123), 918, 1082], ['ething', uW(wc + 180), uW(wc - 180), 260, 420, 'უნიტაზი'], ['edash', uW(9310), uW(8850), 1150, 1950, 'საშრობი'], ['ething', uW(V[3]), uW(V[1]), 350, 850, 'კარადა'],
+  ], [[uW(8079), WCW, 'w', -1, 'P4: 133 / 104.5'], [uW(wc), WCD, 'd', -1, 'P4: 119 / 23'],
+      [uW(8593), 550, 'w', 1, ''], [uW(8393), 550, 'w', 1, 'P3: 82 და 102 / 55'],
+      [uW(9310), 1200, 'h', 1, ''], [uW(8850), 1200, 'h', 1, 'საშრობი: 10 და 56 / 120']]);
+
+  $('ptable').innerHTML = '<tr><th>№</th><th>ოთახი</th><th>რა</th><th>რა მილი</th><th>ადგილი</th><th>სიმაღლე სუფთა იატაკიდან</th><th>შენიშვნა</th></tr>' +
+    PL.map(p => `<tr><td><span class="pdot ${p.kind}"></span>${p.n}</td><td>${p.room}</td><td>${p.what}</td><td>${p.svc}</td><td>${p.where}</td><td>${p.z}</td><td>${p.note}</td></tr>`).join('');
+})();
+
+/* ---------- stages ---------- */
+(() => {
+  /* w: [first working week, how many weeks], counted from the start day; need: what has to be in the flat when the stage starts —
+     lead = weeks before that day it must be bought or ordered, by = another stage whose start it is needed for */
+  const STAGES = [
+    { id: 'prep', name: 'დაწყებამდე — ახლავე', who: 'შენ, დიზაინერი, ბრიგადა', w: null,
+      does: [
+        'ბრიგადასთან წერილობითი შეთანხმება: რა შედის ფასში, ვადები და გადახდა ეტაპობრივად — თითო ეტაპი იხდება მისი მიღების შემდეგ.',
+        'დიზაინერის საბოლოო ნახაზები მიღებულია (IJ Design Studio, 10.2026: ტიხრები, ელექტროობა, სანტექნიკა, ჭერი, სააბაზანოს კედლები, ავეჯი). ბრიგადას ბეჭდური ასლი გადაეცით; ნახაზებს შორის შეუსაბამობები დიზაინერთან დააზუსტეთ (სია „სანტექნიკის“ ჩანართის ბოლოშია).',
+        'ჭერი დიზაინერის გეგმითაა (A.15): სუფთა ჭერი 2.90 მ-ზე, ჯიბეები ფარდებისთვის და ფარული შუქისთვის, შუბლი საწოლის თავზე, მისაღების რიგელის დაღარული ყუთი. ელექტრიკოსმა ეს პირველივე კვირაში უნდა ნახოს.',
+        'კონდიციონერების მოდელი — ადგილი დიზაინერის გეგმაზეა (მისაღები და საძინებელი №4, 2.50 მ-ზე); მილები კედელში შპაკლამდე იდება.',
+        'ქურა: შემოყვანილი გაზის მილი ქურის ადგილს ემთხვევა? თუ არა, გაზის მილის გადატანა, როგორც წესი, გაზის სამსახურის საქმეა და არა ბრიგადის — ახლავე გაარკვიე, ვინ გადაიტანს და რა ვადაში.',
+        'გამწოვი: ნახაზზე სამზარეულოს ზედაპირიდან ზედა კარადებამდე 60 სმ-ია, გაზის სანთურებს კი ჩვეულებრივ 65 სმ სჭირდება — დიზაინერთან გადასაწყვეტია.',
+        'შხაპის ხაზოვანი ტრაპი (P6) შახტიდან მოშორებით დგას — სანტექნიკოსმა ადგილზე დაადასტუროს, რომ კანალიზაცია დაახლოებით 2.4 მ-ზე საკმარისი დახრილობით გავა.',
+        'ზამთრის გათბობა: შპაკლს, საღებავს და ლამინატს თბილი და მშრალი ბინა სჭირდება (დაახლოებით 18 °C), რადიატორები კი ბოლოს კიდება. გაარკვიე, რით გათბება ბინა ნოემბრიდან იანვრამდე.',
+        'შენობის მართვასთან: სამუშაო საათები, ლიფტით სარგებლობა და სამშენებლო ნაგვის გატანა.' ],
+      need: [ { t: 'კედელში ჩასაშენებელი ნაწილები, რომლებიც სანტექნიკოსს პირველივე დღეებში სჭირდება: შხაპის სისტემის კორპუსი (P2), ხელსაბნის კედლის შემრევის კორპუსი (P1), ჰიგიენური შხაპის კორპუსი (P3), დეკორატიული ხაზოვანი ტრაპი (P6, გეგმაზე დაახლ. 68 სმ) და სტანდარტული ტრაპი (P5). უნიტაზის ჩარჩო (Geberit) უკვე ნაყიდია.', lead: 1, by: 'plumb' } ] },
+    { id: 'mark', name: 'მონიშვნა და კედლების ამოშენება', who: 'ბრიგადა', w: [0, 1],
+      does: [
+        'ყველა წერტილის მონიშვნა კედელზე დიზაინის მიხედვით: როზეტები, ჩამრთველები, სანათები, წყალი — შენი თანდასწრებით.',
+        'კედლები დიზაინერის ტიხრების ნახაზით (A.9): ჰოლის ნიშის მოკლე კედელი თაბაშირ-მუყაოთი 70 სმ-მდე (კარადა 01-A ახლა ზუსტად 70 სმ სიღრმისაა); ჰოლში ბურჯი შახტის კუთხეში; სააბაზანოს ახალი 80 სმ-იანი კარის ღიობი შახტთან უფრო ახლოს და ძველი ღიობის ბოლოში 15 სმ ამოშენება; საძინებელ №3-ში ბურჯი ფანჯარასთან; მისაღებში ორი 12 სმ სიღრმის თაბაშირ-მუყაოს ყუთი დივნის კედელზე.',
+        'კარის ღიობების გაზომვა, როცა ამოშენება დასრულდება — მუხის კარები ამ ზომებით შეიკვეთება.' ],
+      check: [ 'მონიშნული კედლების ფოტოები — მერე ელექტრიკოსის და სანტექნიკოსის ნამუშევარს ამით შეადარებ.' ] },
+    { id: 'elec', name: 'ელექტროობა — გაყვანილობის გადაწყობა', who: 'ელექტრიკოსი', w: [0, 2],
+      does: [
+        'დეველოპერის გაყვანილობიდან გადაიტანე მხოლოდ ის წერტილები, რომლებიც დიზაინს არ ემთხვევა; დანარჩენი რჩება.',
+        'ცალკე ხაზები: ღუმელი, ქურის ინდუქციური ნაწილი, ჭურჭლის სარეცხი, სარეცხი და საშრობი მანქანები, კონდიციონერები.',
+        'ტელევიზორის კედელი, სარკეების განათება, LED ლენტების კვების წერტილები, ტრეკი, სააბაზანოს ვენტილატორი, გაზის დეტექტორი — „განათების“ ჩანართის გეგმით (დიზაინერის A.11–A.13).',
+        'ფარი: თითო ხაზს თავისი ავტომატი; სააბაზანოს, სამზარეულოს და სარეცხი მანქანის ხაზებს — დამცავი (დიფერენციალური) ავტომატი.' ],
+      check: [ 'ყოველი კედლის ფოტო რულეტკით, სანამ შპაკლი დაფარავს — მერე ზუსტად გეცოდინება, სად გადის სადენი.', 'ხაზების შემოწმება ხელსაწყოთი — ელექტრიკოსმა გაჩვენოს.' ] },
+    { id: 'plumb', name: 'სანტექნიკა და კონდიციონერის მილები', who: 'სანტექნიკოსი, კონდიციონერის ხელოსანი', w: [1, 2],
+      does: [
+        'სააბაზანო ნულიდან: წყლის და კანალიზაციის მილები, უნიტაზის ჩარჩო, კედელში ჩასაშენებელი შემრევები, ხაზოვანი ტრაპი, პირსახოცის საშრობის გამოსასვლელი.',
+        'სამზარეულო: ნიჟარა და ჭურჭლის სარეცხი. ჰოლის ნიშა: სარეცხი მანქანის წყალი და კანალიზაცია.',
+        'რადიატორებთან მიყვანილი მილების შემოწმება (რადიატორები ბოლოს კიდება).',
+        'კონდიციონერები: ფრეონის მილები და წყლის გამყვანი მილი კედელში.' ],
+      check: [ 'მილების წნევით შემოწმება, სანამ დაიხურება — შენი თანდასწრებით, მანომეტრის ფოტოთი.', 'ყოველი მილის ფოტო რულეტკით.', 'კედელში ჩასაშენებელი შემრევები ისეთ სიღრმეზე უნდა იდგეს, რომ ფილის შემდეგ ზედაპირს გაუსწორდეს.' ] },
+    { id: 'ceil', name: 'ჭერი', who: 'ბრიგადა', w: [2, 2],
+      does: [
+        'თაბაშირ-მუყაოს ჭერი 2.90 მ-ზე (A.15) და მისაღებში რიგელის დაღარული, მომრგვალებული ყუთი (70 სმ სიგანის).',
+        'სანათების ხვრელები და ჭერის ჯიბეები: ფარდის — სამივე ოთახში აივნის კედელთან; ფარული შუქის — დივნის ნიშის თავზე, საძინებელ №3-ში მაგიდის კედელთან, საშხაპის თავზე; შუბლი LED-ით საწოლის თავზე, საძინებელ №4-ში.',
+        'დანარჩენი ბეტონის ჭერის მომზადება შპაკლისთვის.' ],
+      need: [ { t: 'ჩასაშენებელი სანათების და ფარდის ღარის მოდელები არჩეული — ხვრელის და ნიშის ზომა მათზეა დამოკიდებული.', lead: 1 } ] },
+    { id: 'bath', name: 'სააბაზანოს მომზადება', who: 'ბრიგადა', w: [3, 2],
+      does: [
+        'კედლების გასწორება ბათქაშით — სააბაზანოში დეველოპერს არაფერი გაუკეთებია.',
+        'უნიტაზის ყუთი (80 სმ სიგანის, 15 სმ სიღრმის) და მის თავზე დაღარული კარადის (05-B) ადგილი, წყალგამძლე თაბაშირ-მუყაოთი.',
+        'იატაკის მოჭიმვა ტრაპისკენ დახრილობით; რამდენ ხანს შრება, ბრიგადასთან დააზუსტე — ნარევზეა დამოკიდებული.',
+        'ჰიდროიზოლაცია: მთელი იატაკი და საშხაპის კედლები 2 მ სიმაღლემდე; იატაკისა და კედლის შეერთებაზე და კედლის კუთხეებში საიზოლაციო ლენტი (დიზაინერის შენიშვნა).' ],
+      check: [ 'ჰიდროიზოლაციის შემოწმება წყლით: იატაკზე დასხმული წყალი ერთი დღე-ღამე უნდა იდგეს და არსად უნდა ჩავიდეს.', 'დახრილობა — წყალი ყველა მხრიდან ტრაპისკენ უნდა მიდიოდეს.' ] },
+    { id: 'putty', name: 'შპაკლი და შლიფი', who: 'ბრიგადა', w: [4, 3],
+      does: [
+        `კედლები (შესაღები ${A.qty.Q.wallPaint} მ²) და ჭერი — 2–3 ფენა; თითო ფენას გაშრობა სჭირდება.`,
+        'კუთხეების გასწორება იქ, სადაც ჩაშენებული კარადები და სამზარეულო დადგება.' ],
+      check: [ 'კედელს გვერდიდან ნათურით მიანათე — ტალღები და ნაკაწრები ღებვამდე უნდა გასწორდეს.' ] },
+    { id: 'tile', name: 'ფილა სააბაზანოში', who: 'მეფილე', w: [5, 2],
+      does: [
+        'ტერაცოს იატაკი და საშხაპის კედელი; ბეტონისფერი კერამოგრანიტი 1200 × 600 დანარჩენ კედლებზე, ჭერამდე (A.16). ნაკერი 1 მმ, კუთხეები 45°-ით წაკვეთილი.',
+        'ფუგის ფერი წინასწარ შეთანხმდეს.' ],
+      need: [ { t: 'კერამოგრანიტი 1200 × 600 ბინაში: ბეტონისფერი 30 ფილა და ტერაცო 19 ფილა (დიზაინერის რაოდენობა).', lead: 2 },
+        { t: 'იატაკის ლამინატი უკვე არჩეული — დიზაინერის შენიშვნით, რომ სააბაზანოს ფილისა და ოთახების იატაკის დონე ერთმანეთს დაემთხვეს (ფილის დონე ლამინატის სისქით განისაზღვრება).', lead: 0 },
+              { t: 'იატაკის ლამინატი ან პარკეტი არჩეული — დიზაინერის შენიშვნით ის ფილის დაგებამდე უნდა აირჩიო, რომ სააბაზანოს და ოთახების იატაკის დონე ერთმანეთს დაემთხვეს.', lead: 0 } ],
+      check: [ 'ნაკერები ერთ ხაზზე; ფილაზე დაკაკუნებით ყრუ ხმა არსად უნდა იყოს; წყალი ტრაპისკენ მიდის.' ],
+      after: 'ფილის შემდეგ იზომება შხაპის მინა (საშხაპე 90 სმ სიგანისაა; მინის სიმაღლე ნახაზზე არ წერია), ნიჟარის ქვა (150 × 50) და სარკე (150 × 120).' },
+    { id: 'measure', name: 'გაზომვები და შეკვეთები', who: 'შენ, ავეჯის ოსტატი, მინის და ქვის ხელოსნები', w: [6, 1],
+      does: [
+        'სამზარეულო, ჩაშენებული კარადები, სამუშაო მაგიდა, ტელევიზორის ტუმბო და ჰოლის თარო — ზუსტი გაზომვა შპაკლის შემდეგ, შეკვეთა იმავე კვირაში. დამზადებას ჩვეულებრივ 3–5 კვირა სჭირდება.',
+        'მაცივრის სვეტი: დიზაინერის ნახაზზე 73.6 სმ-ია, შიგნით 70 სმ — ჩვეულებრივი 56 სმ-იანი ნიშის მაცივარი ეტევა, ფართო კი მხოლოდ სვეტის გაფართოებით (იხ. „დიზაინერისთვის“). ნიშა სამ სიმაღლეზე გაზომე.',
+        'შხაპის მინა, ნიჟარის ქვა და სარკეები (სააბაზანო 150 × 120, ჰოლი 100 × 240, საძინებელი) — მზადდება დაახლოებით 1–2 კვირაში.' ],
+      need: [ { t: 'სამზარეულოს ტექნიკის ზუსტი მოდელები არჩეული — ოსტატი კარადებს მათი ზომებით აკეთებს: ღუმელი, ქურა, ჩაშენებული გამწოვი, ჭურჭლის სარეცხი, ჩაშენებული მაცივარი.', lead: 0 } ] },
+    { id: 'paint', name: 'ღებვა — პირველი ფენები', who: 'ბრიგადა', w: [7, 1],
+      does: [
+        'გრუნტი და ორი ფენა: Caparol Cremeweiss კედლები, თეთრი ჭერი (სააბაზანოში ორთქლგამძლე), ოთხი აქცენტური კედელი — Oase 45 სასადილოსთან, Flora 15 დივნის ნიშაში, Amber 20 და Siena 40 ბავშვების ოთახში.',
+        'ბოლო ფენა ავეჯის და კარების შემდეგ ისმება — ნაკაწრები რომ დაიფაროს.' ],
+      need: [ { t: 'საღებავი — დიზაინერის წესით: ჯერ მინიმალური რაოდენობა, სატესტო ფურცელი შესაბამის კედელზე, დანარჩენი მხოლოდ გამშრალი ფერის დადასტურების შემდეგ.', lead: 1 } ] },
+    { id: 'floor', name: 'იატაკი', who: 'ბრიგადა ან იატაკის ხელოსანი', w: [8, 1],
+      does: [
+        'მოჭიმვის შემოწმება: 2 მ-იან ლარტყასთან 2 მმ-ზე მეტი ჩაღრმავება არ უნდა იყოს; სადაც მეტია — თვითსწორებადი ნარევი.',
+        `ლამინატი ან პარკეტი ქვესაგებზე, ნაძვისებრი წყობით, ${A.qty.Q.floorNet} მ²; კედელთან 8–10 მმ ღრეჩო რჩება, პლინტუსი ფარავს.` ],
+      need: [ { t: `არჩეული ლამინატი და ქვესაგები (${A.qty.Q.floor10} მ², 10% მარაგით) — ბინაში ორი დღით ადრე უნდა მოიტანო, რომ ოთახის ტემპერატურას შეეგუოს.`, lead: 1 } ],
+      check: [ 'მოჭიმვის ტენიანობა — ხელოსანმა გაზომოს; სველ მოჭიმვაზე დაგებული ლამინატი იბერება.' ] },
+    { id: 'fit', name: 'სანათები, როზეტები, სანტექნიკის მოწყობილობები', who: 'ელექტრიკოსი, სანტექნიკოსი', w: [8, 2],
+      does: [
+        'როზეტები, ჩამრთველები, სანათები, LED ლენტები, ტრეკი, კედლის სანათები.',
+        'უნიტაზი, ხელსაბანი და მისი კარადა, შემრევები, პირსახოცის საშრობი, შხაპის მინა, სარკეები.',
+        'რადიატორები და კონდიციონერის შიდა ბლოკები.' ],
+      need: [ { t: 'სანათები და ნათურები (3000K), როზეტები და ჩამრთველები, სანტექნიკის მოწყობილობები, რადიატორები, უნიტაზის ჯამი.', lead: 2 } ],
+      check: [ 'ყოველი ჩამრთველი თავის ჯგუფს რთავს („განათების“ გეგმით); დამცავ ავტომატებზე ტესტის ღილაკი მუშაობს.', 'ონკანები, ტრაპი და უნიტაზი — არსად ჟონავს.' ] },
+    { id: 'doors', name: 'კარები და პლინტუსი', who: 'კარების ოსტატი, ბრიგადა', w: [9, 1],
+      does: [
+        'სამი მუხის კარი ჩარჩოებით (ორი საძინებელი და სააბაზანო), საძინებლებისას ზემოთ ჭერამდე პანელით.',
+        'პლინტუსი იატაკის და კარების შემდეგ.' ],
+      need: [ { t: 'მუხის კარები შეკვეთით — ზომა კარის ღიობებიდან, კედლების ამოშენების შემდეგ.', lead: 5 } ] },
+    { id: 'kitchen', name: 'სამზარეულო და ჩაშენებული ავეჯი', who: 'ავეჯის ოსტატი, ქვის ხელოსანი, სანტექნიკოსი', w: [10, 2],
+      does: [
+        'სამზარეულოს კარადები, ჩაშენებული ტექნიკა, კარადები, სამუშაო მაგიდა, ტელევიზორის ტუმბო, ჰოლის თარო.',
+        'ქვის ზედაპირი იზომება ქვედა კარადების დადგმის შემდეგ და 1–2 კვირაში მზადდება; მერე — ნიჟარა, ონკანი, ქურა და ფართუკი.' ],
+      check: [ 'კარადის კარებს შორის ნაკერები თანაბარია, კარები ერთმანეთს არ ეხება, უჯრები ბოლომდე იღება.' ] },
+    { id: 'finish', name: 'ბოლო ფენა, ფარდები, დასუფთავება', who: 'ბრიგადა', w: [12, 1],
+      does: [
+        'საღებავის ბოლო ფენა და შესწორებები; ფარდები; გენერალური დასუფთავება.',
+        'ბინის ჩაბარება: ბრიგადასთან ერთად შემოიარეთ და ყველა ხარვეზი ჩაწერეთ — ბოლო თანხა მათი გასწორების შემდეგ.' ],
+      need: [ { t: 'ფარდები შეკვეთით.', lead: 3 } ] },
+    { id: 'move', name: 'ავეჯი და შესვლა', who: 'მაღაზიები', w: [13, 1],
+      does: [ 'დივანი, საწოლები და ლეიბები, სასადილო მაგიდა და სკამები, ხალიჩა, ტელევიზორი, მცენარე.' ],
+      need: [ { t: 'დივანი და სხვა შეკვეთით ავეჯი — მზადდება 2–3 კვირა და მეტი.', lead: 4 } ] },
+  ];
+  const KEY = 'bina228.stages.v1', DEF = '2026-11-02', box = $('tab-stages');
+  const MON = ['იანვარი', 'თებერვალი', 'მარტი', 'აპრილი', 'მაისი', 'ივნისი', 'ივლისი', 'აგვისტო', 'სექტემბერი', 'ოქტომბერი', 'ნოემბერი', 'დეკემბერი'];
+  const ISO = /^\d{4}-\d\d-\d\d$/;
+  let start = DEF, done = new Set(), open = null;
+  try { const s = JSON.parse(localStorage.getItem(KEY) || 'null') || {}; if (ISO.test(s.start)) start = s.start; for (const id of s.done || []) done.add(id); } catch (e) {}
+  const save = () => { try { localStorage.setItem(KEY, JSON.stringify({ start, done: [...done] })); } catch (e) {} };
+  const D = s => { const [y, m, d] = s.split('-').map(Number); return new Date(y, m - 1, d); };
+  const add = (d, n) => new Date(d.getFullYear(), d.getMonth(), d.getDate() + n);
+  const day = d => d.getDate() + ' ' + MON[d.getMonth()];
+  const span = (a, b) => a.getMonth() === b.getMonth() && a.getFullYear() === b.getFullYear() ? `${a.getDate()}–${b.getDate()} ${MON[a.getMonth()]}` : `${day(a)} – ${day(b)}`;
+  const t0 = new Date(); const today = new Date(t0.getFullYear(), t0.getMonth(), t0.getDate());
+  // working weeks from the start day; the weeks holding 1 and 7 January (New Year, Christmas) are skipped
+  function weeks(n) {
+    const out = []; let m = D(start);
+    while (out.length < n) { if (![...Array(7)].some((_, i) => { const x = add(m, i); return x.getMonth() === 0 && (x.getDate() === 1 || x.getDate() === 7); })) out.push(m); m = add(m, 7); }
+    return out;
+  }
+  function render() {
+    const W = weeks(Math.max(...STAGES.filter(s => s.w).map(s => s.w[0] + s.w[1]))), at = {};
+    for (const s of STAGES) at[s.id] = s.w ? [W[s.w[0]], add(W[s.w[0] + s.w[1] - 1], 5)] : [today < D(start) ? today : null, add(D(start), -1)];
+    const end = Math.max(...STAGES.map(s => at[s.id][1])), nWeeks = W.length, nDone = STAGES.filter(s => done.has(s.id)).length;
+    const now = STAGES.find(s => !done.has(s.id) && at[s.id][1] >= today) || STAGES[STAGES.length - 1];
+    if (open == null) open = new Set([now.id]);
+    const ed = new Date(end);
+    $('stot').innerHTML = `<span>დასრულება დაახლოებით</span><b>${day(ed)} ${ed.getFullYear()}</b>` +
+      `<p>${nWeeks} სამუშაო კვირა და საახალწლო შესვენება · მზადაა ${nDone} ეტაპი ${STAGES.length}-დან</p>`;
+    const deadline = (n, s) => {      // counted back in working weeks, so a deadline never falls in the holiday break
+      const w = STAGES.find(x => x.id === (n.by || s.id)).w[0] - n.lead, d = w >= 0 ? W[w] : add(D(start), 7 * w), left = (d - today) / 864e5, gone = done.has(s.id);
+      return `<span class="sdl${gone ? '' : left < 0 ? ' late' : left < 7 ? ' soon' : ''}">ბოლო ვადა: ${day(d)}</span>`;
+    };
+    $('slist').innerHTML = STAGES.map((s, i) => {
+      const [a, b] = at[s.id], isOpen = open.has(s.id), fin = done.has(s.id);
+      const list = (h, xs) => xs && xs.length ? `<div class="sblk"><h4>${h}</h4><ul class="plain">${xs.join('')}</ul></div>` : '';
+      return `<section class="bg sg${isOpen ? ' open' : ''}${fin ? ' sdone' : ''}"><div class="bgh"><input type="checkbox" data-done="${s.id}"${fin ? ' checked' : ''} title="ეტაპი მზადაა">` +
+        `<button type="button" class="bgt" data-st="${s.id}" aria-expanded="${isOpen}"><span class="bgn">${i + 1}. ${s.name}` +
+        `${fin ? ' <span class="est bought">✓ მზადაა</span>' : s === now ? ' <span class="est now">ახლა</span>' : ''}<small>${s.who}</small></span>` +
+        `<b>${a ? span(a, b) : 'ბოლო დღე ' + day(b)}</b><span class="chev"></span></button></div><div class="bgb">` +
+        list('რა კეთდება', s.does.map(x => `<li>${x}</li>`)) +
+        list('იყიდე ან შეუკვეთე', (s.need || []).map(n => `<li>${n.t} ${deadline(n, s)}</li>`)) +
+        list('შეამოწმე, სანამ ეტაპს მიიღებ', (s.check || []).map(x => `<li>${x}</li>`)) +
+        (s.after ? `<div class="sblk"><p class="note">${s.after}</p></div>` : '') + '</div></section>';
+    }).join('');
+    $('sstart').value = start;
+  }
+  render();
+  box.addEventListener('click', e => { const b = e.target.closest('.bgt[data-st]'); if (!b) return; const id = b.dataset.st; if (open.has(id)) open.delete(id); else open.add(id); render(); });
+  box.addEventListener('change', e => {
+    const t = e.target;
+    if (t.id === 'sstart') { if (!ISO.test(t.value)) return; start = t.value; }
+    else if (t.dataset.done) { if (t.checked) done.add(t.dataset.done); else done.delete(t.dataset.done); }
+    else return;
+    save(); render();
+  });
+})();
+
+setTab(location.hash.slice(1));
+window.addEventListener('hashchange', () => setTab(location.hash.slice(1)));
+</script>
+<noscript>ამ გვერდს JavaScript სჭირდება.</noscript>
+</body>
+</html>

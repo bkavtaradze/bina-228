@@ -1,0 +1,453 @@
+[
+ {
+  "id": "ba-shower",
+  "designer": "ჩასაშენებელი საშხაპე: თხელი კვადრატული „წვიმის“ თავი კედლის მკლავზე, მართკუთხა ფირფიტა კვადრატული ბერკეტით, ცალკე წვრილი კვადრატული ხელის შხაპი; დავარცხნილი თბილი თითბერი.",
+  "keep": [],
+  "drop": [
+   "Roxy Georgia DeRicci DE-530-BG",
+   "Meir, ბრაშირებული ოქროსფერი"
+  ],
+  "options": [
+   {
+    "tier": "eco",
+    "shop": "Merlons",
+    "url": "https://merlons.ge/products/built-in-shower-system-empolo-with-shower-headshower-and-mixer-brushed-gold-m72-4701bg",
+    "img": "https://merlons.ge/cdn/shop/files/M72-4701BG-01-white.png",
+    "name": "Empolo M72 4701BG ჩასაშენებელი საშხაპე სისტემა (ჩასაშენებელი შემრევი, წვიმის თავი, ხელის შხაპი)",
+    "dims": "კომპლექტი",
+    "color": "დავარცხნილი ოქროსფერი (BG)",
+    "weak": "შემრევის ფირფიტა კვადრატულია, მაგრამ წვიმის თავი და ხელის შხაპი მრგვალია — დიზაინში ყველაფერი კვადრატულია.",
+    "price": 1390,
+    "priceNote": "ფასი ვნახე 2026-11-02",
+    "est": false,
+    "match": "close"
+   },
+   {
+    "tier": "mid",
+    "shop": "Merlons",
+    "url": "https://merlons.ge/products/shower-system-empolo-built-in-mixer-hand-shower-and-30-cm-shower-head-brushed-gold-m23-4701bgss-12bg",
+    "img": "https://merlons.ge/cdn/shop/files/M23-4701BG-SS-12BG-01-white.png",
+    "name": "Empolo M23 4701BG + SS-12BG: ჩასაშენებელი შემრევი, კვადრატული 30 სმ წვიმის თავი მკლავზე, წვრილი კვადრატული ხელის შხაპი",
+    "dims": "კომპლექტი; თავი 30 სმ",
+    "color": "დავარცხნილი ოქროსფერი (BG)",
+    "weak": "",
+    "price": 1488,
+    "priceNote": "ფასი ვნახე 2026-11-02 (საიტზე 1,488 ₾)",
+    "est": false,
+    "match": "same"
+   },
+   {
+    "tier": null,
+    "shop": "Roxy Georgia",
+    "url": "https://roxygeorgia.ge/პროდუქცია/ჩასაშენებელი-დუში-ოქროსფერი-gra-530-bg-ka/",
+    "img": "https://roxygeorgia.ge/images/detailed/11/GRA-530-BG.jpg",
+    "name": "DeRicci DE-530-BG ჩასაშენებელი საშხაპე სისტემა",
+    "dims": "კომპლექტი",
+    "color": "დავარცხნილი ოქროსფერი",
+    "weak": "ფირფიტები, ბერკეტები და ხელის შხაპი მრგვალია — დიზაინის კვადრატულ ფორმას არ ემთხვევა (ფერი და ოჯახი კარგია, მაგრამ ფორმა არა).",
+    "price": 1305,
+    "priceNote": "ფასი ვნახე 2026-11-02",
+    "est": false,
+    "match": "different"
+   }
+  ],
+  "notes": "Merlons Empolo M23 (მიმდინარე „mid“) ფორმითაც და ფერითაც დიზაინის შხაპია — დავტოვე. მრგვალ შხაპებს ვერ ავიღებთ: დიზაინში კვადრატულია. Top ვარიანტი კვადრატული ფორმით, ოქროსფერში სხვა მაღაზიაში ვერ ვიპოვე (Roxy/Meir/VitrA/Deante-ს ხელმისაწვდომი მოდელები მრგვალია ან ფერი სხვაა). ფერის სხვაობა: ბასეინის ონკანი (M839) და შხაპი (M23) სხვადასხვა Empolo სერია — სანამ შეუკვეთავთ, მაღაზიაში ორივე ერთად შეადარეთ."
+ },
+ {
+  "id": "ba-basin-mixer",
+  "designer": "კედლიდან გამოსული ორი ცალკე ნაწილი მრგვალ ფირფიტებზე: წვრილი მრგვალი მილისებრი ცხვირი ოდნავ დახრილი ბოლოთი და მრგვალი ბერკეტი წვრილი ვერტიკალური სახელურით; დავარცხნილი თითბერი.",
+  "keep": [],
+  "drop": [
+   "Empolo M23 1702BG",
+   "Empolo M72 1701G, კვადრატული ცხვირით"
+  ],
+  "options": [
+   {
+    "tier": "eco",
+    "shop": "Merlons",
+    "url": "https://merlons.ge/products/built-in-basin-mixer-empolo-with-long-nose-brushed-gold-with-inner-part-m839-1701bg",
+    "img": "https://merlons.ge/cdn/shop/files/M839-1701BG-01-white.png",
+    "name": "Empolo M839 1701BG ხელსაბნის ჩასაშენებელი შემრევი, გრძელი მრგვალი ცხვირით, ჩასაშენებელი ნაწილით",
+    "dims": "ცხვირი გრძელი (სიგრძე გვერდზე არ წერია — დარეკვით დააზუსტეთ)",
+    "color": "ოქროსფერი (BG), ფოტოზე ოდნავ უფრო პრიალა და ღია ტონი",
+    "weak": "ფორმა ზუსტად ემთხვევა; ფოტოზე ტონი უფრო ღიაა და პრიალა, ვიდრე დიზაინის მქრქალი თითბერი — ნიმუში ჯერ ნახეთ.",
+    "price": 394.4,
+    "priceNote": "ფასი ვნახე 2026-11-02",
+    "est": false,
+    "match": "same"
+   },
+   {
+    "tier": "mid",
+    "shop": "Merlons",
+    "url": "https://merlons.ge/products/built-in-basin-mixer-meir-brushed-gold-ms05-pvdbb",
+    "img": "https://merlons.ge/cdn/shop/files/MS05-PVDBB-MW03-FIN-PVDBB-MW13BDY-01-white.png",
+    "name": "Meir MS05 ხელსაბნის ჩასაშენებელი შემრევი, მრგვალი ფირფიტები და მრგვალი ცხვირი",
+    "dims": "ჩასაშენებელი, გრძელი ცხვირი",
+    "color": "ბრაშირებული ოქროსფერი (PVD ბრაშირებული თითბერი)",
+    "weak": "",
+    "price": 673,
+    "priceNote": "ფასი ვნახე 2026-11-02",
+    "est": false,
+    "match": "same"
+   },
+   {
+    "tier": "top",
+    "shop": "Roxy Georgia",
+    "url": "https://roxygeorgia.ge/პროდუქცია/ჩასაშენებელი-ონკანი-ოქროსფერი-gra-0322-bg/",
+    "img": "https://roxygeorgia.ge/images/detailed/11/GRA-0322-BG.jpg",
+    "name": "DeRicci DE-0322-BG ჩასაშენებელი ონკანი, ორი მრგვალი ფირფიტა, დახრილი ბოლოთი ცხვირი",
+    "dims": "ჩასაშენებელი",
+    "color": "დავარცხნილი (მქრქალი) ოქროსფერი",
+    "weak": "",
+    "price": 816,
+    "priceNote": "ფასი ვნახე 2026-11-02",
+    "est": false,
+    "match": "same"
+   },
+   {
+    "tier": null,
+    "shop": "Roxy Georgia",
+    "url": "https://roxygeorgia.ge/პროდუქცია/ჩასაშენებელი-ონკანი-dericci-gra-0322i-bg/",
+    "img": "https://roxygeorgia.ge/images/detailed/12/GRA-0322I-BG.jpeg",
+    "name": "DeRicci DE-0322I-BG ჩასაშენებელი ონკანი, სწორი მრგვალი ცხვირი",
+    "dims": "ჩასაშენებელი",
+    "color": "დავარცხნილი ოქროსფერი",
+    "weak": "ცხვირი სწორია, დიზაინში ბოლო ოდნავ ქვემოთაა მოხრილი.",
+    "price": 985,
+    "priceNote": "ფასი ვნახე 2026-11-02",
+    "est": false,
+    "match": "close"
+   }
+  ],
+  "notes": "მიმდინარე „mid“ Empolo M23 1702BG კვადრატული ფორმისაა (ერთი მართკუთხა ფირფიტა) — დიზაინს არ ემთხვევა, ამოვიღე. ცხვირის სიგრძე დიზაინერთან დასაზუსტებელია (ნიჟარა 15 სმ ქვაა). ფერისთვის ერთი ოჯახი აირჩიეთ ჰიგიენურ შხაპთან და აქსესუარებთან."
+ },
+ {
+  "id": "ba-hygienic",
+  "designer": "კედელზე მრგვალი გამოსასვლელი, ზედ წვრილი მრგვალი (ფანქრისებრი) ხელის შხაპი ლითონის შლანგით და გვერდით ცალკე პატარა მრგვალი ონკანი; დავარცხნილი თითბერი.",
+  "keep": [],
+  "drop": [
+   "Grassi SO7452-BG",
+   "DeRicci DE-12057-BG, კვადრატული",
+   "Empolo კომპაქტური ჰიგიენური კომპლექტი"
+  ],
+  "options": [
+   {
+    "tier": "eco",
+    "shop": "Roxy Georgia",
+    "url": "https://roxygeorgia.ge/პროდუქცია/აბაზანის-ჰიგიენური-ონკანი-xdl-12056k-bg-brushed-gold/",
+    "img": "https://roxygeorgia.ge/images/detailed/9/GRA-12056B-Brushed_gold.png",
+    "name": "DeRicci 12056K-BG ჰიგიენური შხაპი ჩასაშენებელი შემრევით, მრგვალი მქრქალი ოქროსფერი",
+    "dims": "კომპლექტი, ლითონის მილით",
+    "color": "დავარცხნილი ოქროსფერი",
+    "weak": "ცალკე პატარა მრგვალი ონკანი არ არის — სარქველი და შხაპის დამჭერი ერთ ბლოკშია, სახელური დაკბილულია; შხაპი T-ფორმისაა და არა თხელი ფანქრისებრი.",
+    "price": 510,
+    "priceNote": "ფასი ვნახე 2026-11-02",
+    "est": false,
+    "match": "close"
+   },
+   {
+    "tier": "mid",
+    "shop": "Merlons",
+    "url": "https://merlons.ge/products/hygienic-shower-set-empolo-compact-brushed-gold-m839-9001mbsp013bg",
+    "img": "https://merlons.ge/cdn/shop/files/M839-9001-MBSP013BG-01-white.png",
+    "name": "Empolo M839 9001 + MBSP013BG კომპაქტური ჰიგიენური კომპლექტი (ბრაშირებული ოქროსფერი)",
+    "dims": "კომპლექტი, 1.2 მ მილით",
+    "color": "ბრაშირებული ოქროსფერი",
+    "weak": "მრგვალი ფირფიტაა, მაგრამ შხაპი ჩვეულებრივი ჰიგიენური (ღილაკიანი) და არა თხელი ფანქრისებრი; ერთსერიიანია ხელსაბნის ონკანთან (M839).",
+    "price": 580,
+    "priceNote": "ფასი ვნახე 2026-11-02",
+    "est": false,
+    "match": "close"
+   },
+   {
+    "tier": "top",
+    "shop": "Merlons",
+    "url": "https://merlons.ge/products/akhali-produqti-16",
+    "img": "https://merlons.ge/cdn/shop/files/MW03-FIN-PVDBB-MHB01N-PVDBB-MW13BDY-01-white.png",
+    "name": "Meir ჰიგიენური ხელის შხაპი ჩასაშენებელი შემრევით (მრგვალი ფირფიტა წვრილი ბერკეტით + ცალკე მრგვალი გამოსასვლელი, PVD ბრაშირებული ოქროსფერი)",
+    "dims": "კომპლექტი",
+    "color": "ბრაშირებული ოქროსფერი",
+    "weak": "შხაპი მცირე ტიპის ჰიგიენურია და არა სრულიად თხელი ფანქრისებრი; დანარჩენი — ცალკე მრგვალი ბერკეტი და გამოსასვლელი — დიზაინს ემთხვევა.",
+    "price": 734,
+    "priceNote": "ფასი ვნახე 2026-11-02",
+    "est": false,
+    "match": "close"
+   },
+   {
+    "tier": null,
+    "shop": "VitrA",
+    "url": "https://vitra.com.ge/ka/product/22895-hygienic-shower-concealed-set-gold-a4553423exp/",
+    "img": "https://vitra.com.ge/wp-content/uploads/2022/07/3-1-1-1024x1024.jpg",
+    "name": "VitrA A4553423EXP ჰიგიენური შხაპის ჩასაშენებელი კომპლექტი, ოქროსფერი",
+    "dims": "კომპლექტი",
+    "color": "პრიალა ოქროსფერი",
+    "weak": "ფერი პრიალაა და არა დავარცხნილი; ბერკეტი მრგვალი ფირფიტაზე, შხაპი სქელი და ჩვეულებრივი.",
+    "price": 712,
+    "priceNote": "ფასი ვნახე 2026-11-02",
+    "est": false,
+    "match": "different"
+   }
+  ],
+  "notes": "ზუსტად თხელი „ფანქრისებრი“ ჰიგიენური შხაპი (როგორც რენდერზე) ქართულ მაღაზიებში ვერ ვიპოვე — ყველა ხელმისაწვდომი მოდელი ჩვეულებრივი ტუალეტის ტიპია. ყველაზე ახლოს Meir-ია (ცალკე მრგვალი ბერკეტი და გამოსასვლელი). დიზაინერს ჰკითხეთ, მისაღებია თუ არა ჩვეულებრივი ჰიგიენური შხაპი ამავე ფერში."
+ },
+ {
+  "id": "ba-toilet",
+  "designer": "თეთრი პრიალა შეკიდული უნიტაზი რბილი ოვალური ფორმით, ბრტყელი თხელი სახურავით; ზემოთ თეთრი მართკუთხა ღილაკი ორი ოვალური კლავიშით.",
+  "keep": [],
+  "drop": [
+   "Roca Gap 34×54",
+   "VitrA M60 Square",
+   "VitrA Integra Rim-ex 54"
+  ],
+  "options": [
+   {
+    "tier": "eco",
+    "shop": "Domino",
+    "url": "https://www.domino.com.ge/products/სანტექნიკა-და-აქსესუარები-ka/უნიტაზები-და-ბიდეები-ka/დასაკიდი-უნიტაზები/დასაკიდი-უნიტაზი-თავსაფარით-victory-tr-a1253w-a-white/",
+    "img": "https://www.domino.com.ge/images/detailed/8960/v8_4FF1_2f7f.png",
+    "name": "Victory TR-A1253W-A შეკიდული უნიტაზი სახურავით",
+    "dims": "ზომა გვერდზე არ წერია — შეამოწმეთ",
+    "color": "თეთრი",
+    "weak": "ფორმა ოვალურია, მაგრამ მცირე და ოდნავ უფრო მართკუთხა სახურავით; სახურავის ტიპი (რბილად ჩამოსაწევი თუ არა) გვერდზე არ წერია.",
+    "price": 299,
+    "priceNote": "ფასი ვნახე 2026-11-02",
+    "est": false,
+    "match": "close"
+   },
+   {
+    "tier": "mid",
+    "shop": "Nova",
+    "url": "https://nova.ge/ka/unitazi-kompleqtit/shekiduli-unitazis-kompleqti-pera-rimless-tavsakhurit-prime-duroplast",
+    "img": "https://nova.ge/images/thumbs/0086832_shekiduli-unitazis-kompleqti-pera-rimless-tavsakhurit-prime-duroplast_600.jpeg",
+    "name": "PERA (Rimless) შეკიდული უნიტაზი სახურავით, Prime Duroplast",
+    "dims": "ზომა გვერდზე არ წერია — შეამოწმეთ (ავზი არ შედის, ჩარჩო უკვე გვაქვს)",
+    "color": "თეთრი",
+    "weak": "",
+    "price": 306,
+    "priceNote": "ფასი ვნახე 2026-11-02: 306 ₾ (ძველი ფასი 360 ₾ გადახაზულია); მიწოდება 5–7 სამუშაო დღე",
+    "est": false,
+    "match": "same"
+   },
+   {
+    "tier": "top",
+    "shop": "Roxy Georgia",
+    "url": "https://roxygeorgia.ge/პროდუქცია/კერამიკული-დასაკიდი-უნიტაზი-წრიული-2380-drc-wh2105-520x365x365mm-wall-hung-pan/",
+    "img": "https://roxygeorgia.ge/images/detailed/10/2380-1.jpg",
+    "name": "DeRicci DRC-WH2105 შეკიდული უნიტაზი, თეთრი პრიალა, ბრტყელი სახურავით",
+    "dims": "520×365×365 მმ",
+    "color": "თეთრი პრიალა",
+    "weak": "ჯამი ოდნავ უფრო „კუბური“, ვიდრე რენდერის რბილი კვერცხისებრი; სახურავის კომპლექტაცია გადაამოწმეთ.",
+    "price": 779,
+    "priceNote": "ფასი ვნახე 2026-11-02",
+    "est": false,
+    "match": "close"
+   }
+  ],
+  "notes": "Roca Gap და VitrA Integra/M60 კვადრატულია — ამოვიღე. Geberit-ის ჩარჩოს ერგება ნებისმიერი ევროპული (EN 33) შეკიდული ჯამი — ეს ზოგადი წესია, მაღაზიის გვერდები ამას თითო მოდელზე არ წერენ; ყიდვის წინ მოითხოვეთ დამჭერი ბოლტების მანძილის დადასტურება. უნიტაზის ზედა კიდე იატაკიდან 42 სმ-ზეა. ჩამრეცხი ღილაკი — Geberit, უკვე ნაყიდია."
+ },
+ {
+  "id": "ba-towel-rail",
+  "designer": "თეთრი პირსახოცის საშრობი ფართო ბრტყელი ჰორიზონტალური ფირფიტებით სამ ჯგუფად, ერთ მხარეს ვერტიკალური მილით; ქვემოთ თეთრი მიერთებები.",
+  "keep": [],
+  "drop": [
+   "Sanica White 500x800, ელექტრო",
+   "J.R G600",
+   "J.R G301",
+   "Berger, სწორი თეთრი 500-800"
+  ],
+  "options": [
+   {
+    "tier": "eco",
+    "shop": "Domino",
+    "url": "https://www.domino.com.ge/products/climatic-equipments/heated-towel-rails/პირსახოცის-საშრობი-decorall-500x800-მმ/",
+    "img": "https://www.domino.com.ge/images/detailed/8930/v8_EB10_f2.png",
+    "name": "Decorall პირსახოცის საშრობი (წყლის, თეთრი, ტრადიციული ბრტყელი მილებით)",
+    "dims": "500×800 მმ",
+    "color": "თეთრი",
+    "weak": "ფართო ბრტყელი ფირფიტების ნაცვლად წვრილი მრგვალი მილებია — ფორმა განსხვავებულია.",
+    "price": 89,
+    "priceNote": "ფასი ვნახე 2026-11-02; წყლის გათბობა",
+    "est": false,
+    "match": "different"
+   },
+   {
+    "tier": "mid",
+    "shop": "Thermocenter",
+    "url": "https://thermocenter.ge/delfina-black-საშრობი-დეკორატიული-500-800-მმ-warma/",
+    "img": "https://thermocenter.ge/images/detailed/23/blackc.webp",
+    "name": "Warma Delfina დეკორატიული საშრობი, ფართო ბრტყელი ფირფიტები (12 სექცია), თეთრი ფერიც არსებობს",
+    "dims": "500×800 მმ (არის 500×1200 და 600×800)",
+    "color": "თეთრი (ფოტოზე შავია, ფერის არჩევანი გვერდზეა)",
+    "weak": "სექციები ერთ ბლოკადაა და არა სამ ჯგუფად ღრეჩოებით (როგორც რენდერზე); მიერთებებს შორის მანძილი გვერდზე არ წერია — 460 მმ-ს შეუსაბამობა შეიძლება.",
+    "price": 299,
+    "priceNote": "ფასი ვნახე 2026-11-02 შავ ვარიანტზე; თეთრის ფასი გვერდზე ცალკე არ ჩანს — დარეკვით დაადასტურეთ. თურქული, წყლის გათბობა (გვერდზე ელექტრო არ წერია)",
+    "est": false,
+    "match": "close"
+   },
+   {
+    "tier": "top",
+    "shop": "Thermocenter",
+    "url": "https://thermocenter.ge/perla-plus-white-საშრობი-დეკორატიული-10-400-870-მმ-lojimax/",
+    "img": "https://thermocenter.ge/images/detailed/20/Lojimax_PERLA_PLUS_White_400-870_მმ___დეკორატიული_საშრობი___1.png",
+    "name": "Lojimax Perla Plus დეკორატიული საშრობი, თეთრი, ბრტყელი სექციები ჯგუფებად ღრეჩოებით, თეთრი ქვედა მიერთებები",
+    "dims": "400×870 მმ",
+    "color": "თეთრი",
+    "weak": "სიგანე 400 და არა 500; ფირფიტები უფრო თხელია, ვიდრე რენდერზე. ფორმით ყველაზე ახლოსაა (ჯგუფები ღრეჩოებით და ქვედა თეთრი მიერთებები).",
+    "price": 599,
+    "priceNote": "ფასი ვნახე 2026-11-02; მარაგშია",
+    "est": false,
+    "match": "close"
+   }
+  ],
+  "notes": "დიზაინის საშრობი წყლისაა: A.14-ის სანტექნიკის გეგმაზე წყლის მიერთებაა, ამიტომ ელექტრო საშრობები (Sanica, J.R) არ ეწერება. წყლის საშრობი მხოლოდ გათბობის სეზონზე თბება — თუ მთელ წელს გინდათ, ამავე ზომის ელექტრო ვერსია დიზაინერს ჰკითხეთ. რენდერზე ორი საშრობია, გეგმაზე ერთი — ბიუჯეტში ერთია. ზუსტად სამჯგუფიანი, ფართო ფირფიტებიანი თეთრი საშრობი ხელმისაწვდომ მაღაზიებში ვერ ვიპოვე; Delfina ყველაზე ახლოსაა."
+ },
+ {
+  "id": "ba-fan",
+  "designer": "ნახაზზე მხოლოდ „გამწოვი – 1“ პირობითი ნიშანია; ფორმა და ფერი არ არის ნაჩვენები.",
+  "keep": [],
+  "drop": [],
+  "options": [
+   {
+    "tier": "eco",
+    "shop": "Gorgia",
+    "url": "https://gorgia.ge/ka/klimaturi-teqnika/saventilacio-sistemebi/abazanis-gamwovi/abazanis-gamwovi-эра-e100s/",
+    "img": "https://gorgia.ge/images/detailed/57/00-00004856_ventilation_system.jpg",
+    "name": "ERA E100S აბაზანის გამწოვი",
+    "dims": "დიამეტრი 100 მმ",
+    "color": "თეთრი",
+    "weak": "ჩვეულებრივი ხმაური; წყნარი არ არის.",
+    "price": 38,
+    "priceNote": "ფასი ვნახე 2026-11-02",
+    "est": false,
+    "match": "same"
+   },
+   {
+    "tier": "mid",
+    "shop": "Gorgia",
+    "url": "https://gorgia.ge/ka/klimaturi-teqnika/saventilacio-sistemebi/abazanis-gamwovi/აბაზანის-გამწოვი-wz-100-silence-თეთრი-awenta/",
+    "img": "https://gorgia.ge/images/detailed/67/BM-00008890.jpg",
+    "name": "Awenta WZ-100 Silence აბაზანის გამწოვი",
+    "dims": "დიამეტრი 100 მმ",
+    "color": "თეთრი",
+    "weak": "",
+    "price": 100,
+    "priceNote": "ფასი ვნახე 2026-11-02",
+    "est": false,
+    "match": "same"
+   },
+   {
+    "tier": "top",
+    "shop": "Modus",
+    "url": "https://modus.ge/ka/პროდუქცია/სააბაზანო-და-საპირფარეშო/სააბაზანოს-გამწოვები/49396-აბაზანის-გამწოვი-SILENT-100-CZ-თეთრი-5210603100-DESIGN-3C-220-240V-50HZ-მწარ-SP",
+    "img": "https://modus.ge/images/products2/493961959c200b4057a21713d234e8f5999ec.png",
+    "name": "Soler & Palau SILENT-100 CZ Design-3C, თეთრი",
+    "dims": "დიამეტრი 100 მმ",
+    "color": "თეთრი",
+    "weak": "",
+    "price": 129,
+    "priceNote": "ფასი ვნახე 2026-11-02",
+    "est": false,
+    "match": "same"
+   }
+  ],
+  "notes": "დიზაინი ფორმას არ აზუსტებს, ამიტომ თეთრი 100 მმ წყნარი გამწოვი საკმარისია. ჭერშია თუ კედელზე და დიამეტრი — დიზაინერს ჰკითხეთ, სანამ ყიდულობთ."
+ },
+ {
+  "id": "ba-mirror",
+  "designer": "დიდი მართკუთხა სარკე ჩარჩოს გარეშე, უკანა განათებით — თბილი შუქი ზედა და ქვედა კიდიდან კედელზე იღვრება; 150 × 120 სმ, ნიჟარის მთელ სიგანეზე.",
+  "keep": [],
+  "drop": [
+   "Smart Mirror 136 × 105 სმ",
+   "Domino LED LM-130 90 x 120",
+   "Domino LED LM-125 80x120",
+   "Modus #NCA24",
+   "Modus ASTRO"
+  ],
+  "options": [
+   {
+    "tier": "eco",
+    "shop": "Mylux",
+    "url": "https://mylux.ge/sarke/",
+    "img": "",
+    "name": "სარკე ზომაზე 150×120 სმ + LED (+80 ₾) + მონტაჟი (+30 ₾); განათების ტიპი (უკანა თუ წინა) ტელეფონით დააზუსტეთ",
+    "dims": "150 × 120 სმ = 1.8 მ²",
+    "color": "თეთრი თბილი/ნეიტრალური — დასაზუსტებელი",
+    "weak": "უკანა განათების ფლობა გვერდზე ცალკე არ წერია.",
+    "price": 200,
+    "priceNote": "გამოთვლა გამოქვეყნებული ტარიფით (2026-11-02): 1.8 მ² × 50 ₾ = 90 + 80 + 30 = 200 ₾",
+    "est": false,
+    "match": "close"
+   },
+   {
+    "tier": "mid",
+    "shop": "Smart Mirror",
+    "url": "https://smartmirror.ge/produkti/rectangular",
+    "img": "",
+    "name": "მართკუთხა სარკე უკანა განათებით, ჩარჩოს გარეშე, ზომაზე 150 × 120 სმ (გარანტია 1 წელი, მიწოდება და მონტაჟი ფასშია)",
+    "dims": "150 × 120 სმ",
+    "color": "თბილი თეთრი (არჩევანია), ჩარჩოს გარეშე",
+    "weak": "",
+    "price": 449,
+    "priceNote": "გვერდის კალკულატორი JS-ით ითვლის და ვერ გავხსენი; ფასი შეფასებულია — 136×105 სმ-ის ფასიდან (356 ₾) ფართობის პროპორციით. ზუსტი ფასი საიტზე შეიყვანეთ ან დარეკეთ (პრომოკოდი SMART2026 = −10%, საიტზე წერია)",
+    "est": true,
+    "match": "same"
+   },
+   {
+    "tier": null,
+    "shop": "Domino",
+    "url": "https://www.domino.com.ge/products/სანტექნიკა-და-აქსესუარები-ka/აბაზანის-ავეჯი-ka/სარკეები/სარკე-led-lm-130-90-x-120-სმ/",
+    "img": "https://www.domino.com.ge/images/detailed/9784/v8_BB5C_556.png",
+    "name": "სარკე LED LM-130",
+    "dims": "90 × 120 სმ",
+    "color": "LED",
+    "weak": "ზომა ბევრად პატარაა (90 სმ სიგანე 150-ის ნაცვლად).",
+    "price": 299,
+    "priceNote": "ფასი ვნახე 2026-11-02",
+    "est": false,
+    "match": "different"
+   }
+  ],
+  "notes": "150×120 მზა სარკე ვერ ვიპოვე — მხოლოდ ზომაზე დამზადება. ორივე ვარიანტი სახელოსნოა; უკანა განათება (ჩარჩოს გარეშე, თბილი შუქი კიდეებიდან) დიზაინთან შესადარებლად ამ სახელოსნოებს ჰკითხეთ. სარკის ცენტრი 150 სმ სიმაღლეზეა."
+ },
+ {
+  "id": "ba-accessories",
+  "designer": "რენდერზე მხოლოდ ღია ტუალეტის ქაღალდის საკიდია: ერთი მოკლე ღერძი მრგვალ საყრდენზე, სახურავის გარეშე, დავარცხნილი თითბერი.",
+  "keep": [],
+  "drop": [
+   "DUXXA Art, ოქროსფერი",
+   "Empolo დავარცხნილი ოქროსფერი + Meir ჯაგრისი",
+   "Meir, დავარცხნილი ოქროსფერი, ერთი ოჯახი"
+  ],
+  "options": [
+   {
+    "tier": "eco",
+    "shop": "Merlons",
+    "url": "https://merlons.ge/products/toilet-paper-hanger-empolo-without-cover-brushed-gold-color-m92803abg",
+    "img": "https://merlons.ge/cdn/shop/files/M92803ABG-catalogue.png",
+    "name": "Empolo M92803ABG ტუალეტის ქაღალდის საკიდი, საფრის გარეშე",
+    "dims": "1 ცალი",
+    "color": "ბრაშირებული ოქროსფერი",
+    "weak": "საყრდენი ბრტყელი ჭიქისებრი ფორმისაა და არა მრგვალი ფირფიტა.",
+    "price": 94,
+    "priceNote": "ფასი ვნახე 2026-11-02",
+    "est": false,
+    "match": "close"
+   },
+   {
+    "tier": "mid",
+    "shop": "Merlons",
+    "url": "https://merlons.ge/products/toilet-paper-hanger-meir-round-brushed-gold-without-cover-mr02-r-pvdbb",
+    "img": "https://merlons.ge/cdn/shop/files/MR02-R-PVDBB-catalogue.png",
+    "name": "Meir MR02-R ტუალეტის ქაღალდის საკიდი, მრგვალი ფირფიტა, საფრის გარეშე",
+    "dims": "1 ცალი",
+    "color": "ბრაშირებული ოქროსფერი (PVD ბრაშირებული თითბერი)",
+    "weak": "",
+    "price": 116,
+    "priceNote": "ფასი ვნახე 2026-11-02",
+    "est": false,
+    "match": "same"
+   }
+  ],
+  "notes": "დიზაინში მხოლოდ ქაღალდის საკიდია. კაუჭები და ჯაგრისი არ ჩანს — ბიუჯეტიდან ამოიღეთ, თუ არ გჭირდებათ (კომპლექტის ფასი 116 ₾-მდე ეცემა). Meir MR02-R ერთსერიიანია Meir ხელსაბნის ონკანთან (MS05) — თუ მას აიღებთ, ფერი ემთხვევა."
+ }
+]
