@@ -162,7 +162,8 @@
   #compass .csun { fill: #ffc531; stroke: #fff4c9; stroke-width: 1.4; } #compass .csun.down { fill: #6b7380; stroke: rgba(255,255,255,.5); }
   .fsbtn { position: absolute; right: 12px; bottom: 10px; z-index: 2; border: 1px solid rgba(255,255,255,.4); background: rgba(24,28,34,.62); color: #fff; font: inherit; font-size: 13px; font-weight: 600; padding: 6px 11px; border-radius: 9px; cursor: pointer; }
   .fsbtn:hover { background: rgba(24,28,34,.8); }
-  #stage3d .hint { max-width: calc(100% - 190px); }
+  #stage3d .hint { max-width: calc(100% - 190px); transition: opacity .6s; }
+  #stage3d .hint.faded { opacity: 0; pointer-events: none; }
   .main:fullscreen, .main.max { height: 100%; width: 100%; padding: 12px; background: var(--bg); overflow: auto; }
   .main.max { position: fixed; inset: 0; z-index: 50; height: 100dvh; }
   .main:fullscreen > header.top, .main.max > header.top { display: none; }
@@ -2340,7 +2341,16 @@ function clipDesign(cut) {
 }
 
 let design = true, curH = CUT, hintBase = '';
-const showHint = () => { hint.textContent = hintBase + (design ? '' : ' · იატაკის ბადე 50 სმ'); };
+// a phone or tablet: the hints speak of fingers, not keys, and fade after a few seconds so they do not cover the small view
+const TOUCH = matchMedia('(pointer: coarse)').matches;
+const hintFor = (keys, fingers) => TOUCH ? fingers : keys;
+let hintTimer = 0;
+const showHint = () => {
+  hint.textContent = hintBase + (design ? '' : ' · იატაკის ბადე 50 სმ');
+  if (!TOUCH) return;
+  hint.classList.remove('faded'); clearTimeout(hintTimer);
+  hintTimer = setTimeout(() => hint.classList.add('faded'), 7000);
+};
 function setDesign(on) {
   design = on; shadeDirty = true;
   D.visible = on; Dceil.visible = on && curH >= H;
@@ -2671,7 +2681,8 @@ function orbitView(v) {
   else camera.position.set(C.x + 8.5, 12.5, C.z + 11.5);
   controls.update();
   mark(viewseg, b => b.dataset.v === v); insel.value = ''; mark(wallseg, b => b.dataset.h === wallMode);
-  hintBase = 'გადაათრიე — ტრიალი · დააჭირე კარს ან ფანჯარას — გაიღება · ორჯერ დააჭირე იატაკს — შიგნით შესვლა'; showHint();
+  hintBase = hintFor('გადაათრიე — ტრიალი · დააჭირე კარს ან ფანჯარას — გაიღება · ორჯერ დააჭირე იატაკს — შიგნით შესვლა',
+    'გადაათრიე — ტრიალი · ორი თითი — მიახლოება · ორჯერ შეეხე იატაკს — შიგნით შესვლა'); showHint();
 }
 function goInside(px, pz, dx, dz, k) {
   if (moveMode) setMove(false, true);
@@ -2690,7 +2701,8 @@ function goInside(px, pz, dx, dz, k) {
   mark(viewseg, () => false); mark(wallseg, b => b.dataset.h === 'full');
   aimdot.classList.remove('hidden');
   compass.classList.remove('hidden'); compHead = null;
-  hintBase = 'W A S D — სიარული · ისრები — მობრუნება და ახედვა · E — კარი, ფანჯარა ან შუქის ჩამრთველი · Esc — გამოსვლა'; showHint();
+  hintBase = hintFor('W A S D — სიარული · ისრები — მობრუნება და ახედვა · E — კარი, ფანჯარა ან შუქის ჩამრთველი · Esc — გამოსვლა',
+    'გადაათრიე — მიმოიხედე · შეეხე იატაკს — იქ მიხვალ · შეეხე კარს ან ჩამრთველს — გაიღება, აინთება · გამოსვლა — ზემოთ „კუთხიდან“'); showHint();
 }
 function insideView(k) {
   const v = INSIDE.find(x => x.k === k); if (!v) return;
@@ -2837,8 +2849,15 @@ renderer.domElement.addEventListener('wheel', e => {
 }, { passive: false });
 renderer.domElement.addEventListener('pointerdown', e => { down = [e.clientX, e.clientY]; const a = document.activeElement; if (a && a !== document.body) a.blur(); });
 renderer.domElement.addEventListener('pointermove', e => { if (!e.buttons) hoverEvt = e; });
+let lastTap = null;
 renderer.domElement.addEventListener('pointerup', e => {
-  if (moveMode || e.button !== 0 || !down || Math.hypot(e.clientX - down[0], e.clientY - down[1]) > 5) return;
+  const touch = e.pointerType === 'touch';      // a finger wobbles more than a mouse, so a tap may drift a little further
+  if (moveMode || e.button !== 0 || !down || Math.hypot(e.clientX - down[0], e.clientY - down[1]) > (touch ? 12 : 5)) return;
+  if (touch && !inside) {      // phones do not always report a double tap, so it is caught here: two taps close in time and place
+    const now = performance.now();
+    if (lastTap && now - lastTap.t < 400 && Math.hypot(e.clientX - lastTap.x, e.clientY - lastTap.y) < 30) { lastTap = null; stepIn(e); if (inside) return; }
+    else lastTap = { t: now, x: e.clientX, y: e.clientY };
+  }
   aim(e);
   const hit = firstHit(); if (!hit) return;
   if (hit.object.userData.light) { if (inside) flipSwitch(hit.object.userData.light); return; }      // lamps are lit only in the views from inside
@@ -2846,14 +2865,15 @@ renderer.domElement.addEventListener('pointerup', e => {
   if (o) o.target = o.target ? 0 : 1;
   else if (inside && floors.includes(hit.object)) walkTo(hit.point);
 });
-renderer.domElement.addEventListener('dblclick', e => {           // from outside: step into the flat where the floor was double-clicked
+renderer.domElement.addEventListener('dblclick', e => stepIn(e));
+function stepIn(e) {           // from outside: step into the flat where the floor was double-clicked (or double-tapped on a phone)
   if (inside || moveMode) return;
   aim(e);
   const hit = firstHit(); if (!hit || !floors.includes(hit.object)) return;
   const g = gates(); let spot = null;
   for (let r = 0; r <= 0.6 && !spot; r += 0.1) for (let a = 0; a < 8 && !spot; a++) { const x = hit.point.x + Math.cos(a * Math.PI / 4) * r, z = hit.point.z + Math.sin(a * Math.PI / 4) * r; if (free(x, z, g)) spot = [x, z]; }
   if (spot) goInside(spot[0], spot[1], hit.point.x - camera.position.x, hit.point.z - camera.position.z, null);
-});
+}
 
 // ---------- moving furniture with the mouse (only in the views from outside) ----------
 let moveMode = false, sel = null, drag = null;
@@ -2872,8 +2892,8 @@ function select(g) {
 }
 function setMove(on, keepView) {
   moveMode = on; toolmove.classList.toggle('on', on); pmove.classList.toggle('hidden', !on);
-  if (on) { if (!design) setDesign(true); if (!keepView) orbitView('top'); hintBase = 'დააჭირე ნივთს და გადაათრიე · R — მობრუნება · ცარიელ ადგილას გადათრევა — ხედის ტრიალი'; showHint(); }
-  else if (!keepView && !inside) { hintBase = 'გადაათრიე — ტრიალი · გორგოლაჭი — მიახლოება · მარჯვენა ღილაკი — გადაადგილება'; showHint(); }
+  if (on) { if (!design) setDesign(true); if (!keepView) orbitView('top'); hintBase = hintFor('დააჭირე ნივთს და გადაათრიე · R — მობრუნება · ცარიელ ადგილას გადათრევა — ხედის ტრიალი', 'შეეხე ნივთს და გადაათრიე · მობრუნება — ღილაკით „↻ 90°“ · ცარიელ ადგილას გადათრევა — ხედის ტრიალი'); showHint(); }
+  else if (!keepView && !inside) { hintBase = hintFor('გადაათრიე — ტრიალი · გორგოლაჭი — მიახლოება · მარჯვენა ღილაკი — გადაადგილება', 'გადაათრიე — ტრიალი · ორი თითი — მიახლოება და გადაადგილება'); showHint(); }
   select(null);
 }
 const turn = () => { sel.rotation.y = (sel.rotation.y + Math.PI / 2) % (2 * Math.PI); saveItem(sel); };
